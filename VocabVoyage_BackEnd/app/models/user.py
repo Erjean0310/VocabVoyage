@@ -10,5 +10,5 @@ class User(Base):
     nick_name = Column(String(255), nullable=False, unique=True, comment="用户昵称")
     phone = Column(String(64), unique=True, nullable=True, comment="手机号")
     password = Column(String(255), nullable=False, comment="用户密码")
-    score = Column(Integer, default=0, comment="积分")
+    coin = Column(Integer, default=0, comment="金币")
     role = Column(String(255), default="user", comment="角色")

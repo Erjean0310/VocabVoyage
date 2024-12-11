@@ -1,0 +1,1 @@
+# service/word.py

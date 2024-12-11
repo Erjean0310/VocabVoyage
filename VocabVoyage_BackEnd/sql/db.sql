@@ -8,7 +8,7 @@ CREATE TABLE user (
                       nick_name VARCHAR(255) COMMENT '昵称',
                       phone VARCHAR(16) UNIQUE NOT NULL COMMENT '手机号',
                       password VARCHAR(10) COMMENT '用户密码',
-                      score INT DEFAULT 0 COMMENT '积分',
+                      coin INT DEFAULT 0 COMMENT '金币',
                       role VARCHAR(255) DEFAULT 'user' COMMENT '角色'
 ) COMMENT '用户表';
 
@@ -16,7 +16,7 @@ CREATE TABLE user (
 -- 创建单词表
 CREATE TABLE word (
                       id INT PRIMARY KEY AUTO_INCREMENT COMMENT '单词ID',
-                      word VARCHAR(255) NOT NULL COMMENT '单词',
+                      spell VARCHAR(255) NOT NULL COMMENT '拼写',
                       meaning VARCHAR(255) COMMENT '单词含义',
                       description VARCHAR(1024) COMMENT '单词描述'
 ) COMMENT '单词表';
@@ -30,7 +30,7 @@ CREATE TABLE memory (
                         proficiency INT COMMENT '熟练度',
                         FOREIGN KEY(word_id) REFERENCES word(id),
                         FOREIGN KEY(user_id) REFERENCES user(id)
-) COMMNENT ;
+) COMMNENT '单词记忆表';
 
 
 -- 创建用户签到记录表
