@@ -29,7 +29,5 @@ class Settings(BaseSettings):
     COOKIE_EXPIRE_MINUTES = 30  # Cookie 有效期（分钟）
 
 
-
-
 # 实例化 settings
 settings = Settings()

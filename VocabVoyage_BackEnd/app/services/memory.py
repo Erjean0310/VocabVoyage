@@ -2,23 +2,33 @@
 import random
 from app.core.constans import Constants
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.crud.memory import list_words_by_proficiency
+from app.crud.memory import list_words_by_proficiency, get_proficiency_of_word, update_proficiency
 
 
 """
-认识    score  = score * 0.7 + max * 0.3
-模糊    score  = score * 0.9
-忘记    score  = score * 0.3
+认识    proficiency  = proficiency * 0.7 + max * 0.3
+模糊    proficiency  = proficiency * 0.9
+忘记    proficiency  = proficiency * 0.3
 
-         score               划分
+         proficiency               划分
 生词     0 =< x < 30          p
 模糊词   30 <= x < 80      1 - p - fix 
 熟词     80 <= x < 101      fix = 0.1
 """
 
 
-async def handle_memory(db: AsyncSession, word_id: int, mem_res: int):
-    pass
+async def handle_memory(db: AsyncSession, user_id, word_id: int, mem_res: int):
+    proficiency = await get_proficiency_of_word(db, word_id, user_id)
+    print("==sss==", type(proficiency))
+    match mem_res:
+        case 1:  # 认识
+            proficiency = proficiency * 0.7 + 100 * 0.3
+        case 2:  # 模糊
+            proficiency = proficiency * 0.9
+        case 3:  # 忘记
+            proficiency = proficiency * 0.3
+    proficiency = int(proficiency)
+    await update_proficiency(db, word_id, proficiency, user_id)
 
 
 async def get_words(db: AsyncSession, user_id: int, new_word_weight, count: int):

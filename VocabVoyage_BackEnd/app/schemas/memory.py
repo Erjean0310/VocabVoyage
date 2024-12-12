@@ -7,3 +7,7 @@ class ProficiencyFilterRequest(BaseModel):
     count: int = Field(Constants.DEFAULT_MEMORIZE_WORD_COUNT, description="获取单词数量 (可选)")
 
 
+class MemorizeWordRequest(BaseModel):
+    word_id: int = Field(..., description="单词 id")
+    mem_res: int = Field(..., description="记忆结果，1: 认识  2: 模糊  3: 忘记")
+
