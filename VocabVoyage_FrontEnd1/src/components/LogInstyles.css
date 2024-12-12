@@ -165,6 +165,7 @@ button:hover{
     animation-delay: 0.8s;
 }
 .reg a{
+    text-decoration: none;
     font-weight: 500;
     cursor: pointer;
     color: rgba(96, 92, 92, 0.6);
