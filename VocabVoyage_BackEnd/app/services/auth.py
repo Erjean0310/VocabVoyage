@@ -1,10 +1,10 @@
 from datetime import datetime, timedelta, UTC
-import jwt
-from fastapi import HTTPException, Response
+from fastapi import HTTPException, Response, Request
 from app.core.config import settings
 from app.services.utils import ComplexEncoder
 from app.core.constans import Constants
 import logging
+import jwt
 
 
 # 创建新的 jwt token
@@ -36,6 +36,37 @@ def verify_token(token: str) -> dict:
 
 # 刷新 token 有效期并更新 cookie
 def refresh_token(token: str, response: Response) -> None:
+    response.set_cookie(
+        key=settings.COOKIE_NAME,
+        value=token,
+        httponly=True,
+        max_age=settings.COOKIE_EXPIRE_MINUTES * 60,  # 秒
+        samesite='lax'
+    )
+
+
+# 获取 user_id 和 token
+def get_user_id_and_token(request: Request):
+    token = request.cookies.get(settings.COOKIE_NAME)
+    payload = verify_token(token)
+    user_id = payload.get("sub")
+    if not user_id:
+        raise HTTPException(status_code=401, detail=Constants.USER_NOT_LOG_IN)
+
+    return user_id, token
+
+
+# 如果有 cookie 的话 刷新 cookie
+def refresh_token_if_exists(request: Request, response: Response) -> None:
+    token = request.cookies.get(settings.COOKIE_NAME)
+    if not token:
+        return
+
+    try:
+        verify_token(token)
+    except HTTPException:
+        return
+
     response.set_cookie(
         key=settings.COOKIE_NAME,
         value=token,

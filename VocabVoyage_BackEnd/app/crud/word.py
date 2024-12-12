@@ -39,7 +39,7 @@ async def get_word_by_spell(spell: str, db: AsyncSession):
     word = result.scalar()
 
     if not word:
-        raise CustomException(404, Constants.WORD_NOT_FOUND)
+        return None
 
     word = jsonable_encoder(word)
     return word
