@@ -1,0 +1,398 @@
+.top {
+    position: relative;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.search {
+    position: absolute;
+    display: inline-block;
+    width: 80%;
+    height: 40px;
+}
+
+.searchicon {
+    position: absolute;
+    display: inline-block;
+    width: 20%;
+    font-family: 'icomoon';
+    font-size: 35px;
+    line-height: 40px;
+    margin-top: 4px;
+    color: #5F6368;
+}
+
+.searchbox {
+    display: inline-block;
+    position: absolute;
+    width: 80%;
+    margin-left: 45px;
+    height: 40px;
+}
+
+.user {
+    display: inline-block;
+    position: absolute;
+    width: 20%;
+    font-family: 'icomoon';
+    font-size: 35px;
+    line-height: 40px;
+    margin-left: 63%;
+    color: darkgray;
+}
+
+.calendar {
+    display: inline-block;
+    position: absolute;
+    width: 20%;
+    font-family: 'icomoon';
+    font-size: 35px;
+    line-height: 40px;
+    margin-left: 71%;
+    color: darkgray;
+}
+
+#usericon {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+
+#calendaricon {
+    display: inline-block;
+    position: absolute;
+    width: 20%;
+    font-family: 'icomoon';
+    font-size: 35px;
+    line-height: 40px;
+    margin-left: 30%;
+    color: darkgray;
+    cursor: pointer;
+}
+
+#userbox {
+    display: none;
+    position: absolute;
+    /* 绝对定位 */
+    width: 170%;
+    height: 600px;
+    margin-left: -155%;
+    margin-top: 10%;
+    background-color: lightgray;
+    border-radius: 8px;
+    z-index: 1000;
+    /* 确保浮动框显示在其他元素之上 */
+    opacity: 0;
+    box-shadow: 2px 2px 15px gray;
+    /* 初始透明度为 0 */
+    /* animation: slideIn 1s forwards; */
+    /* 设置动画 */
+    transform-origin: top right;
+}
+
+
+#calendarbox {
+    display: none;
+    position: absolute;
+    /* 绝对定位 */
+    width: 250%;
+    height: 400px;
+    margin-left: -200%;
+    margin-top: 30%;
+    background-color: lightgray;
+    border-radius: 8px;
+    z-index: 1000;
+    /* 确保浮动框显示在其他元素之上 */
+    opacity: 0;
+    box-shadow: 2px 2px 15px gray;
+    /* 初始透明度为 0 */
+    /* animation: slideIn 1s forwards; */
+    /* 设置动画 */
+    transform-origin: top right;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+        display: none;
+    }
+}
+
+
+
+.middle {
+    position: relative;
+    height: 600px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+}
+
+.article {
+    position: absolute;
+    display: inline-flexbox;
+    width: 65%;
+    height: 80%;
+    margin-left: 30px;
+    margin-top: 30px;
+    overflow-y: scroll;
+    border-radius: 20px;
+    background-color: #F1F1F1;
+}
+
+#worddetail {
+    display: none;
+    position: absolute;
+    width: 65%;
+    height: 80%;
+    margin-left: 30px;
+    margin-top: 30px;
+    overflow-y: scroll;
+    border-radius: 20px;
+    background-color: #E6E8EB;
+    z-index: 500;
+    opacity: 0;
+    box-shadow: 2px 2px 15px gray;
+}
+
+
+#worddetail::-webkit-scrollbar {
+    display: none;
+}
+
+.article::-webkit-scrollbar {
+    display: none;
+}
+
+.text {
+    height: 80%;
+}
+
+#words {}
+
+.words {
+    position: absolute;
+    display: inline-block;
+    width: 30%;
+    height: 90%;
+    margin-left: 70%;
+    margin-top: 30px;
+    background-color: #F0F2F4;
+    overflow-y: auto;
+    border-radius: 20px;
+}
+
+.words::-webkit-scrollbar {
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.wordbox {
+    width: 90%;
+    height: 100px;
+    background-color: #F1F1F1;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    backdrop-filter: blur(var(--card_filter));
+    -webkit-backdrop-filter: blur(var(--card_filter));
+    transition: opacity 0.5s ease, background-color 0.2s ease, border 0.2s ease, transform 0.3s ease;
+    cursor: pointer;
+    transform-origin: top right;
+}
+
+
+@keyframes biggerwordbox {
+    0% {
+        height: 100px;
+    }
+
+    100% {
+        height: 500px;
+    }
+}
+
+@keyframes smallerwordbox {
+    0% {
+        height: 500px;
+    }
+
+    100% {
+        height: 100px;
+    }
+}
+
+.wordbox:hover {
+    /* 经过项目时的动画和阴影透明效果 */
+    box-shadow: 0 8px 16px -4px gray;
+    transform: translateZ(-20px);
+    transform: translateY(-10px);
+}
+
+.wordbox:hover .word {
+    font-size: 18px;
+}
+
+.word {
+    display: inline-block;
+    background-color: #F0F2F4;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    transition: font-size 0.4s ease;
+}
+
+.playPauseBtn {
+    display: inline-block;
+    color: #333;
+    /* 图标颜色 */
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.playPauseBtn:hover {
+    color: #007bff;
+    font-size: 23px;
+    /* 鼠标悬停时的颜色 */
+}
+
+.get {
+    position: absolute;
+    display: inline-block;
+    width: 10%;
+    font-family: 'icomoon';
+    font-size: 23px;
+    line-height: 100%;
+    margin-top: 7px;
+    margin-left: 50px;
+    color: #333;
+    cursor: pointer;
+}
+
+.get:hover {
+    color: #007bff;
+    /* 鼠标悬停时的颜色 */
+}
+
+.describe {
+    height: 50%;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow-y: scroll;
+    filter: blur(3px);
+    cursor: pointer;
+}
+
+.describe::-webkit-scrollbar {
+    display: none;
+}
+
+.describe:hover {
+    filter: blur(0px);
+}
+
+.progressbar {
+    position: absolute;
+    width: 40%;
+    height: 20px;
+    background-color: gainsboro;
+    margin-left: 10%;
+    margin-top: 550px;
+    border-radius: 10px;
+}
+
+#bar {
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #93ADE3;
+    cursor: pointer;
+    transition: width 0.5s ease;
+}
+
+.bar:hover {
+    box-shadow: 0 8px 16px -4px gray;
+    transform: translateZ(-20px);
+    /* transform: translateY(-10px); */
+}
+
+
+
+
+/* 1. 超小屏幕下  小于 768  布局容器的宽度为 100% */
+@media screen and (max-width: 767px) {
+    .top {
+        width: 100%;
+    }
+
+    .middle {
+        width: 100%;
+    }
+}
+
+/* 2. 小屏幕下  大于等于768  布局容器改为 750px */
+@media screen and (min-width: 768px) {
+    .top {
+        width: 750px;
+    }
+
+    .middle {
+        width: 750px;
+    }
+}
+
+/* 3. 中等屏幕下 大于等于 992px   布局容器修改为 970px */
+@media screen and (min-width: 992px) {
+    .top {
+        width: 970px;
+    }
+
+    .middle {
+        width: 970px;
+    }
+}
+
+/* 4. 大屏幕下 大于等于1200 布局容器修改为 1170 */
+@media screen and (min-width: 1200px) {
+    .top {
+        width: 1170px;
+    }
+
+    .middle {
+        width: 1170px;
+    }
+}
