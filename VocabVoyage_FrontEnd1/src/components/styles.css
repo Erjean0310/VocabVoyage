@@ -97,20 +97,21 @@ h1{
     animation-delay: 0.8s;
 }
 
-input{
+
+.input-wrap > input{
     background-color: transparent;
     font-size: 2rem;
     color: white;
     padding: 5px 20px;
-    width: 90%;
+    width: 80%;
 }
-
 
 
 input::placeholder {
     font-size: 1.2rem;
     color: white;
 }
+
 
 
 .rem{
@@ -133,6 +134,11 @@ font-size: 1.2rem;
 color: white;
 cursor: pointer;
 }
+
+.remBox{
+    width: auto;
+}
+
 button{
     font-size: 1.2rem;
     height: 60px;
