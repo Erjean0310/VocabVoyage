@@ -27,3 +27,9 @@ class UserResponse(BaseModel):
 
     class Config:
         orm_mode = True  # 使 Pydantic 能够从 ORM 模型中读取数据
+
+
+class UserChangePassword(BaseModel):
+    phone: str = Field(..., description="电话号码")
+    old_password: str = Field(..., description="原密码")
+    new_password: str = Field(..., description="新密码")

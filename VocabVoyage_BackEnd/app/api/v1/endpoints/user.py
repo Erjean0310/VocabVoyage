@@ -2,8 +2,8 @@
 from fastapi import APIRouter, HTTPException, Depends, Response, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.session import get_db
-from app.crud.user import create_user, get_user_by_phone, verify_password
-from app.schemas.user import UserCreate, UserLogin
+from app.crud.user import create_user, get_user_by_phone, verify_password, update_user_password
+from app.schemas.user import UserCreate, UserLogin, UserChangePassword
 from app.services.auth import create_token, refresh_token, verify_token
 from app.core.config import settings
 from app.services.user_service import user_sign_in
@@ -37,7 +37,7 @@ async def login_user(user: UserLogin, response: Response, db: AsyncSession = Dep
     db_user = await verify_password(db, user.phone, user.password)
 
     if not db_user:
-        raise HTTPException(status_code=401, detail=Constants.LOGIN_ERROR)
+        raise HTTPException(status_code=401, detail=Constants.VERIFICATION_FAILED)
 
     # 创建 JWT Token
     token = create_token({'sub': str(db_user.id)})
@@ -78,22 +78,36 @@ async def sign_in(request: Request, response: Response, db: AsyncSession = Depen
     return {"message": "签到成功"}
 
 
-# 受保护的路由，检查是否有有效的 Token
-@router.get("/test/protected-route")
-async def protected_route(request: Request, response: Response):
-    # 从 Cookie 获取 Token
-    token = request.cookies.get(settings.COOKIE_NAME)
-    if not token:
-        raise HTTPException(status_code=401, detail="Not authenticated")
+@router.post("/change-password", summary="修改密码")
+async def change_password(user: UserChangePassword, db: AsyncSession = Depends(get_db)):
+    # 根据手机号获取用户
+    db_user = await verify_password(db, user.phone, user.old_password)
 
-    # 验证 Token
-    try:
-        payload = verify_token(token)
-    except HTTPException:
-        raise HTTPException(status_code=401, detail="Session expired or invalid")
+    if db_user is None:
+        raise HTTPException(status_code=400, detail=Constants.VERIFICATION_FAILED)
 
-    # 刷新 Cookie 的有效期
-    refresh_token(token, response)
+    # 更新密码
+    await update_user_password(db, db_user.id, user.new_password)
+    
+    return {"message": "密码修改成功"}
 
-    return {"message": "Access granted, Cookie expiration refreshed"}
+
+# # 受保护的路由，检查是否有有效的 Token
+# @router.get("/test/protected-route")
+# async def protected_route(request: Request, response: Response):
+#     # 从 Cookie 获取 Token
+#     token = request.cookies.get(settings.COOKIE_NAME)
+#     if not token:
+#         raise HTTPException(status_code=401, detail="Not authenticated")
+#
+#     # 验证 Token
+#     try:
+#         payload = verify_token(token)
+#     except HTTPException:
+#         raise HTTPException(status_code=401, detail="Session expired or invalid")
+#
+#     # 刷新 Cookie 的有效期
+#     refresh_token(token, response)
+#
+#     return {"message": "Access granted, Cookie expiration refreshed"}
 

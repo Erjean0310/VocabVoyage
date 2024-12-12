@@ -2,6 +2,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from app.models.user import User
+from sqlalchemy import update
 
 
 async def create_user(db: AsyncSession, nick_name: str, phone: str, password: str):
@@ -24,4 +25,13 @@ async def verify_password(db: AsyncSession, phone: str, password: str):
     if user and user.password == password:
         return user
     return None
+
+
+async def update_user_password(db: AsyncSession, user_id: int, new_password: str):
+    await db.execute(
+        update(User)
+        .where(User.id == user_id)
+        .values(password=new_password)
+    )
+    await db.commit()
 
