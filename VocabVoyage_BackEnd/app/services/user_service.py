@@ -3,6 +3,7 @@ from app.crud.user_sigin_in import add_sign_in_record, get_sign_in_record, updat
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import HTTPException
 from app.core.constans import Constants
+from app.core.response import CustomException
 
 
 # 用户签到
@@ -13,7 +14,7 @@ async def user_sign_in(db: AsyncSession, user_id: int):
 
     if day == 1:  # 每月 1 号直接添加签到记录
         await add_sign_in_record(db, user_id, 1 << 1, year_month_str)
-        return
+        raise CustomException(403, Constants.USER_HAS_SIGNED_IN)
 
     record = await get_sign_in_record(db, user_id, year_month_str)
 
@@ -22,11 +23,9 @@ async def user_sign_in(db: AsyncSession, user_id: int):
         await add_sign_in_record(db, user_id, record, year_month_str)
     else:
         offset = 1 << day
-        a = type(record)
         is_signed_in = record & offset
         if is_signed_in:
-            # 用户已签到
-            raise HTTPException(status_code=403, detail=Constants.USER_HAS_SIGNED_IN)
+            raise CustomException(403, Constants.USER_HAS_SIGNED_IN)
         else:
             record = record | offset
         await update_sign_in_record(db, user_id, record, year_month_str)

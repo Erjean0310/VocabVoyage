@@ -39,9 +39,6 @@ async def get_words(db: AsyncSession, user_id: int, new_word_weight, count: int)
     familiar_word = await list_words_by_proficiency(db, user_id, familiar_word_count, 80, 101)
     words.extend(familiar_word)
 
-    a = type(familiar_word)
-    print("====", a)
-
     vague_word_count = (count * (1 - new_word_weight - familiar_word_weight)
                         + familiar_word_count - len(familiar_word))
     vague_word = await list_words_by_proficiency(db, user_id, vague_word_count, 30, 80)

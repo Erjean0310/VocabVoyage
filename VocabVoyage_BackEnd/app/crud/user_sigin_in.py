@@ -10,7 +10,6 @@ async def get_sign_in_record(db: AsyncSession, user_id: int, year_month: str):
         .filter(UserSignIn.user_id == user_id, UserSignIn.sign_in_year_month == year_month)
     )
     record = result.scalar_one_or_none()
-    a = type(record)
     return record
 
 
