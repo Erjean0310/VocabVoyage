@@ -7,3 +7,7 @@ class Constants:
     SESSION_INVALID = "当前会话状态异常!"
     VERIFICATION_FAILED = "账号或密码错误!"
     LOGIN_SUCCESS = "登录成功!"
+
+    # 单词记忆常量
+    FAMILIAR_WORD_WEIGHT = 0.1
+    DEFAULT_MEMORIZE_WORD_COUNT = 10

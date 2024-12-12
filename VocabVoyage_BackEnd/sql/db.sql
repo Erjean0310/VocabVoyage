@@ -27,7 +27,7 @@ CREATE TABLE memory (
                         user_id INT COMMENT '用户id',
                         word_id INT COMMENT '单词ID',
                         last_memory_time DATE COMMENT '上次记忆时间',
-                        proficiency INT COMMENT '熟练度',
+                        proficiency INT DEFAULT COMMENT '熟练度: 0 ~ 100',
                         FOREIGN KEY(word_id) REFERENCES word(id),
                         FOREIGN KEY(user_id) REFERENCES user(id)
 ) COMMENT '单词记忆表';
