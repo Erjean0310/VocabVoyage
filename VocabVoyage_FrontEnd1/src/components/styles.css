@@ -91,10 +91,15 @@ h1{
     opacity: 0;
     animation-delay: 0.6s;
 }
+.in-3{
+    animation: reloadA 1.6s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.8s;
+}
 
 input{
     background-color: transparent;
-    font-size: 1.2rem;
+    font-size: 2rem;
     color: white;
     padding: 5px 20px;
 }
@@ -114,9 +119,9 @@ input::placeholder {
     width: 90%;
     margin-bottom: 40px;
     
-    animation: reloadA 1.8s ease-out forwards;
+    animation: reloadA 1.4s ease-out forwards;
     opacity: 0;
-    animation-delay: 0.8s;
+    animation-delay: 0.6s;
     
 }
  
@@ -138,9 +143,9 @@ button{
     cursor: pointer;
     transition: 0.3s;
 
-    animation: reloadA 2s ease-out forwards;
+    animation: reloadA 1.6s ease-out forwards;
     opacity: 0;
-    animation-delay: 1s;
+    animation-delay: 0.8s;
 }
 button:hover{
     background-color: rgb(221, 221, 221);
@@ -151,9 +156,9 @@ button:hover{
     color: white;
     margin-top : 40px;
 
-    animation: reloadA 2.2s ease-out forwards;
+    animation: reloadA 1.6s ease-out forwards;
     opacity: 0;
-    animation-delay: 1.2s;
+    animation-delay: 0.8s;
 }
 .reg a{
     font-weight: 500;
