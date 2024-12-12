@@ -8,7 +8,7 @@
           <el-input
             :style="'--el-input-border-color:rgba(0,0,0,0);`:'"
             v-model="form.phone"
-            placeholder="电话号码"
+            placeholder="phone"
             prefix-icon="el-icon-user"
             clearable
           />
@@ -19,23 +19,26 @@
             :style="'--el-input-border-color:rgba(0,0,0,0)'"
             v-model="form.password"
             type="password"
-            placeholder="密码"
+            placeholder="password"
             prefix-icon="el-icon-lock"
             clearable
           />
         </el-form-item>
 
         <el-form-item class="in-3">
-          <el-checkbox v-model="form.remember">记住密码</el-checkbox>
+          <!-- <el-checkbox v-model="form.remember">记住密码</el-checkbox> //TODO 记住密码功能-->
         </el-form-item>
 
-        <el-form-item class="in-4" label-width="auto">
-            <button center>登录</button>
-            <!-- <el-button type="primary" size = "large" @click="handleLogin">登录</el-button> -->
+        <el-form-item class="in-3" label-width="auto">
+            <!-- <button @click="handleLogin">登录</button> -->
+            <el-button 
+              style="background-color: aliceblue;color: black;"  
+              size = "large" 
+              @click="handleLogin">登录</el-button>
         </el-form-item>
       </el-form>
 
-      <p class="reg in-4">
+      <p class="reg in-3">
         还没有账号？
         <el-link type="warning" :to="{ path: '/signup' }" >注册</el-link>
       </p>
@@ -120,7 +123,7 @@ a{
 /* 背景色设置为透明 */
 /* 提示框的字体颜色 */
 /* 输入框颜色 */
-
+/* 去除输入时边框颜色 */
 :deep(.el-input__wrapper) {
 background: transparent;
 }
@@ -133,6 +136,12 @@ background: transparent;
   background-color: rgba(0, 0, 0, 0) !important;
     color: #ffffff;
     font-size: 30px;
+}
+
+:deep(.el-input__wrapper) {
+    box-shadow: none !important;
+    /* border-bottom: 1px solid black; */
+    border-radius: 0;
 }
 
 
