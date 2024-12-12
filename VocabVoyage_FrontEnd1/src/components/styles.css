@@ -167,7 +167,64 @@ button:hover{
 .reg a{
     font-weight: 500;
     cursor: pointer;
+    color: rgba(96, 92, 92, 0.6);
+    
 }
+
+/* 隐藏默认复选框 */
+.rem input[type="checkbox"] {
+    display: none;
+}
+
+/* 自定义复选框外观 */
+.rem label {
+    position: relative;
+    padding-left: 30px; /* 留出空间放自定义复选框 */
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* 伪元素实现复选框 */
+.rem label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 4px; /* 让复选框有轻微圆角 */
+    background-color: transparent;
+    transition: background-color 0.3s;
+}
+
+/* 复选框选中状态样式 */
+.rem input[type="checkbox"]:checked + label::before {
+    background-color: rgba(0, 0, 0, 0); /* 选中后背景颜色 */
+    border-color: rgba(255, 255, 255, 0.127);    /* 边框颜色 */
+}
+
+/* 自定义选中符号 */
+.rem label::after {
+    content: "✓";
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* 勾选时显示符号 */
+.rem input[type="checkbox"]:checked + label::after {
+    opacity: 1;
+}
+
+
 
 /* Amimation */
 
