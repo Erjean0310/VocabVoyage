@@ -1,8 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
 from sqlalchemy.dialects.mysql import BIT
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
+from app.models.base import Base
 
 
 class UserSignIn(Base):

@@ -20,7 +20,6 @@ async def user_sign_in(db: AsyncSession, user_id: int):
     if record is None:
         record = 1 << day
         await add_sign_in_record(db, user_id, record, year_month_str)
-        return
     else:
         offset = 1 << day
         a = type(record)

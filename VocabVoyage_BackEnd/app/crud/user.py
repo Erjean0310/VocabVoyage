@@ -18,8 +18,10 @@ async def get_user_by_phone(db: AsyncSession, phone: str):
     return result.scalar_one_or_none()  # 获取查询结果
 
 
+# 验证账号密码, 成功则返回匹配的 user
 async def verify_password(db: AsyncSession, phone: str, password: str):
-    db_user = await get_user_by_phone(db, phone)
-    if db_user and db_user.password == password:
-        return db_user
+    user = await get_user_by_phone(db, phone)
+    if user and user.password == password:
+        return user
     return None
+

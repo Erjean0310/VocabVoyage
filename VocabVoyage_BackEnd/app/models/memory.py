@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Date
-from user import Base
 from sqlalchemy.orm import relationship
+from app.models.base import Base
+from app.models.user import User
+from app.models.word import Word
 
 
 class Memory(Base):
