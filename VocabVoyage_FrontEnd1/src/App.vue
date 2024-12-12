@@ -1,10 +1,15 @@
 <template>
+  <div id="app">
+    <Header />
+    <MainContent />
+  </div>
   <MarkdownViewer :markdownContent="markdownData" />
 </template>
 
 <script>
 import { ref } from 'vue'
 import MarkdownViewer from './components/MarkdownViewer.vue'
+
 
 export default {
   components: {
