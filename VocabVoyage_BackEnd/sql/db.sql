@@ -7,7 +7,7 @@ CREATE TABLE user (
                       id INT AUTO_INCREMENT PRIMARY KEY COMMENT '用户ID',
                       nick_name VARCHAR(255) COMMENT '昵称',
                       phone VARCHAR(16) UNIQUE NOT NULL COMMENT '手机号',
-                      password VARCHAR(10) COMMENT '用户密码',
+                      password VARCHAR(64) COMMENT '用户密码',
                       coin INT DEFAULT 0 COMMENT '金币',
                       role VARCHAR(255) DEFAULT 'user' COMMENT '角色'
 ) COMMENT '用户表';
@@ -30,7 +30,7 @@ CREATE TABLE memory (
                         proficiency INT COMMENT '熟练度',
                         FOREIGN KEY(word_id) REFERENCES word(id),
                         FOREIGN KEY(user_id) REFERENCES user(id)
-) COMMNENT '单词记忆表';
+) COMMENT '单词记忆表';
 
 
 -- 创建用户签到记录表
@@ -41,4 +41,4 @@ CREATE TABLE user_sign_in (
                               record BIT(32) COMMENT '签到记录',
                               FOREIGN KEY (user_id) REFERENCES user(id), # 外键
                               UNIQUE INDEX idx_user_id_year_month (user_id, sign_in_year_month) # 唯一索引
-);
+) COMMENT '签到记录表';
