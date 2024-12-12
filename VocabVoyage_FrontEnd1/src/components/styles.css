@@ -104,6 +104,7 @@ h1{
     color: white;
     padding: 5px 20px;
     width: 80%;
+    
 }
 
 
@@ -135,10 +136,6 @@ color: white;
 cursor: pointer;
 }
 
-.remBox{
-    width: auto;
-}
-
 button{
     font-size: 1.2rem;
     height: 60px;
@@ -155,7 +152,7 @@ button{
     animation-delay: 0.8s;
 }
 button:hover{
-    background-color: rgb(221, 221, 221);
+    background-color: rgba(221, 221, 221, 0.31);
 }
 
 .reg{
