@@ -6,11 +6,11 @@ from sqlalchemy import update
 
 
 async def create_user(db: AsyncSession, nick_name: str, phone: str, password: str):
-    db_user = User(nick_name=nick_name, phone=phone, password=password)
-    db.add(db_user)
-    await db.commit()  # 异步提交
-    await db.refresh(db_user)  # 异步刷新
-    return db_user
+    new_user = User(nick_name=nick_name, phone=phone, password=password)
+    db.add(new_user)
+    await db.commit()
+    await db.refresh(new_user)
+    return new_user
 
 
 async def get_user_by_phone(db: AsyncSession, phone: str):
@@ -38,6 +38,25 @@ async def update_user_password(db: AsyncSession, user_id: int, new_password: str
         update(User)
         .where(User.id == user_id)
         .values(password=new_password)
+    )
+    await db.commit()
+
+
+async def update_user_avatar(db: AsyncSession, user_id: int, avatar_url: str):
+    await db.execute(
+        update(User)
+        .where(User.id == user_id)
+        .values(avatar=avatar_url)  # 更新头像字段
+    )
+    await db.commit()
+
+
+async def update_user_fields(db: AsyncSession, user_id: int, **kwargs):
+    # 使用 kwargs 来动态更新用户字段
+    await db.execute(
+        update(User)
+        .where(User.id == user_id)
+        .values(**kwargs)  # 将 kwargs 解包为字段和值
     )
     await db.commit()
 

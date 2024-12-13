@@ -1037,7 +1037,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="vocab_voyage">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-12-13.13:12:22</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-13.17:00:36</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="wordtest">
@@ -1273,149 +1273,159 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DefaultExpression>&apos;user&apos;</DefaultExpression>
       <Position>6</Position>
     </column>
-    <index id="340" parent="301" name="PRIMARY">
+    <column id="340" parent="301" name="avatar">
+      <Comment>用户头像</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="341" parent="301" name="signature">
+      <Comment>用户签名</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <index id="342" parent="301" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="341" parent="301" name="phone">
+    <index id="343" parent="301" name="phone">
       <ColNames>phone</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="342" parent="301" name="PRIMARY">
+    <key id="344" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="343" parent="301" name="phone">
+    <key id="345" parent="301" name="phone">
       <UnderlyingIndexName>phone</UnderlyingIndexName>
     </key>
-    <column id="344" parent="302" name="id">
+    <column id="346" parent="302" name="id">
       <AutoIncrement>5</AutoIncrement>
       <Comment>签到记录ID</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="345" parent="302" name="user_id">
+    <column id="347" parent="302" name="user_id">
       <Comment>用户id</Comment>
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="346" parent="302" name="sign_in_year_month">
+    <column id="348" parent="302" name="sign_in_year_month">
       <Comment>签到年月</Comment>
       <DasType>varchar(16)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="347" parent="302" name="record">
+    <column id="349" parent="302" name="record">
       <Comment>签到记录</Comment>
       <DasType>bit(32)|0s</DasType>
       <Position>4</Position>
     </column>
-    <foreign-key id="348" parent="302" name="user_sign_in_ibfk_1">
+    <foreign-key id="350" parent="302" name="user_sign_in_ibfk_1">
       <ColNames>user_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <index id="349" parent="302" name="PRIMARY">
+    <index id="351" parent="302" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="350" parent="302" name="idx_user_id_year_month">
+    <index id="352" parent="302" name="idx_user_id_year_month">
       <ColNames>user_id
 sign_in_year_month</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="351" parent="302" name="PRIMARY">
+    <key id="353" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="352" parent="302" name="idx_user_id_year_month">
+    <key id="354" parent="302" name="idx_user_id_year_month">
       <UnderlyingIndexName>idx_user_id_year_month</UnderlyingIndexName>
     </key>
-    <column id="353" parent="303" name="id">
+    <column id="355" parent="303" name="id">
       <AutoIncrement>43578</AutoIncrement>
       <Comment>单词ID</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="354" parent="303" name="spell">
+    <column id="356" parent="303" name="spell">
       <Comment>拼写</Comment>
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="355" parent="303" name="meaning">
+    <column id="357" parent="303" name="meaning">
       <Comment>单词含义</Comment>
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="356" parent="303" name="description">
+    <column id="358" parent="303" name="description">
       <Comment>单词描述</Comment>
       <DasType>varchar(10240)|0s</DasType>
       <Position>4</Position>
     </column>
-    <index id="357" parent="303" name="PRIMARY">
+    <index id="359" parent="303" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="358" parent="303" name="PRIMARY">
+    <key id="360" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="359" parent="304" name="id">
+    <column id="361" parent="304" name="id">
       <AutoIncrement>43578</AutoIncrement>
       <Comment>单词ID</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="360" parent="304" name="spell">
+    <column id="362" parent="304" name="spell">
       <Comment>拼写</Comment>
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="361" parent="304" name="meaning">
+    <column id="363" parent="304" name="meaning">
       <Comment>单词含义</Comment>
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="362" parent="304" name="description">
+    <column id="364" parent="304" name="description">
       <Comment>单词描述</Comment>
       <DasType>varchar(10240)|0s</DasType>
       <Position>4</Position>
     </column>
-    <index id="363" parent="304" name="PRIMARY">
+    <index id="365" parent="304" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="364" parent="304" name="PRIMARY">
+    <key id="366" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="365" parent="305" name="spell">
+    <column id="367" parent="305" name="spell">
       <DasType>varchar(255)|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="366" parent="305" name="meaning">
+    <column id="368" parent="305" name="meaning">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="367" parent="306" name="spell">
+    <column id="369" parent="306" name="spell">
       <DasType>varchar(255)|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="368" parent="306" name="meaning">
+    <column id="370" parent="306" name="meaning">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>

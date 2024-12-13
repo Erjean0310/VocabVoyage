@@ -54,7 +54,7 @@ def get_user_id_and_token(request: Request):
     user_id = payload.get("sub")
     if not user_id:
         raise HTTPException(status_code=401, detail=Constants.USER_NOT_LOG_IN)
-
+    user_id = int(user_id)
     return user_id, token
 
 

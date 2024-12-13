@@ -2,7 +2,7 @@
 from fastapi import APIRouter, Depends, Response, Request, File, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.session import get_db
-from app.crud.user import create_user, get_user_by_phone, verify_password, update_user_password
+from app.crud.user import create_user, get_user_by_phone, verify_password, update_user_password, update_user_fields
 from app.schemas.user import UserCreate, UserLogin, UserChangePassword
 from app.services.auth import create_token, refresh_token, get_user_id_and_token
 from app.core.config import settings
@@ -91,9 +91,38 @@ async def change_password(user: UserChangePassword, request: Request, response: 
     return Result.success(Constants.MODIFY_PASSWORD_SUCCESS)
 
 
-@router.post("/upload/", summary="上传头像")
-async def upload_file(file: UploadFile = File(...)):
-    file_url = upload_file_to_oss(file)
+@router.post("/update_avatar/", summary="更新用户头像")
+async def update_avatar(request: Request, file: UploadFile = File(...), db: AsyncSession = Depends(get_db)):
+    user_id, token = get_user_id_and_token(request)  # 获取用户ID
+    file_url = upload_file_to_oss(file)  # 上传文件到OSS
     if file_url is None:
         return Result.fail("头像上传失败")
-    return Result.success(data=file_url)
+
+    # 使用通用更新方法更新头像
+    await update_user_fields(db, user_id, avatar=file_url)
+
+    return Result.success("头像更新成功", data={"avatar_url": file_url})
+
+
+@router.post("/change_password/", summary="修改用户密码")
+async def change_password(user: UserChangePassword, request: Request, db: AsyncSession = Depends(get_db)):
+    user_id, token = get_user_id_and_token(request)  # 获取用户ID
+
+    # 使用通用更新方法更新密码
+    await update_user_fields(db, user_id, password=user.new_password)
+
+    return Result.success("密码更新成功")
+
+
+@router.post("/upload/", summary="上传头像")
+async def upload_file(request: Request, file: UploadFile = File(...), db: AsyncSession = Depends(get_db)):
+    user_id, token = get_user_id_and_token(request)  # 获取用户ID
+    file_url = upload_file_to_oss(file)  # 上传文件到OSS
+    if file_url is None:
+        return Result.fail("头像上传失败")
+
+    # 使用通用更新方法更新头像
+    await update_user_fields(db, user_id, avatar=file_url)
+
+    return Result.success("头像更新成功", data={"avatar_url": file_url})
+

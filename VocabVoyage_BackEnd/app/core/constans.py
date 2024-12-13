@@ -29,3 +29,6 @@ class Constants:
     DEFAULT_MODEL = "gpt-4o-mini"
     DEFAULT_STREAM_ENABLED = True
 
+
+    DEFAULT_AVATAR_URL = "http://vocab-voyage.oss-cn-beijing.aliyuncs.com/default_avatar.png"
+

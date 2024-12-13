@@ -24,12 +24,13 @@ class UserResponse(BaseModel):
     id: int = Field(..., description="用户 ID")
     nick_name: str = Field(..., description="用户昵称")
     phone: str = Field(..., description="用户手机号")
+    avatar: str = Field(..., description="用户头像")
 
     class Config:
         orm_mode = True  # 使 Pydantic 能够从 ORM 模型中读取数据
 
 
 class UserChangePassword(BaseModel):
-    phone: str = Field(..., description="电话号码")
-    old_password: str = Field(..., description="原密码")
+    phone: str = Field(..., description="用户手机号")
+    old_password: str = Field(..., description="旧密码")
     new_password: str = Field(..., description="新密码")

@@ -10,7 +10,8 @@ CREATE TABLE user (
                       password VARCHAR(64) COMMENT '用户密码',
                       coin INT DEFAULT 0 COMMENT '金币',
                       role VARCHAR(255) DEFAULT 'user' COMMENT '角色',
---                       icon VARCHAR(255) COMMENT '用户头像'
+                      avatar VARCHAR(255) COMMENT '用户头像',
+                      signature VARCHAR(255) COMMENT '用户签名'
 ) COMMENT '用户表';
 
 
