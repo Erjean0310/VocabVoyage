@@ -20,3 +20,9 @@ class Constants:
     WORD_NOT_FOUND = "找不到该单词信息"
 
     REPORT_SUCCESS = "上报成功"
+
+    # 大模型相关常量
+    OPENAI_PROMPT = "你是一名英语老师"
+    DEFAULT_MODEL = "gpt-4o-mini"
+    DEFAULT_STREAM_ENABLED = True
+

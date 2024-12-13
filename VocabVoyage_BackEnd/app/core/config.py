@@ -28,6 +28,16 @@ class Settings(BaseSettings):
     COOKIE_NAME = "session_id"
     COOKIE_EXPIRE_MINUTES = 30  # Cookie 有效期（分钟）
 
+    # OSS 配置
+    ENDPOINT: str
+    ACCESS_KEY_ID: str
+    ACCESS_KEY_SECRET: str
+    BUCKET_NAME: str
+
+    # OpenAI API 密钥
+    OPENAI_API_KEY: str
+
 
 # 实例化 settings
 settings = Settings()
+

@@ -1,5 +1,5 @@
 # api/v1/endpoints/user.py
-from fastapi import APIRouter, Depends, Response, Request, Query
+from fastapi import APIRouter, Depends, Response, Request, Query, File, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.session import get_db
 from app.crud.user import create_user, get_user_by_phone, verify_password, update_user_password
@@ -9,6 +9,7 @@ from app.core.config import settings
 from app.services.user_service import user_sign_in
 from app.core.constans import Constants
 from app.core.result import Result
+from app.services.file_upload import upload_file_to_oss
 
 
 router = APIRouter()
@@ -89,3 +90,10 @@ async def change_password(user: UserChangePassword, request: Request, response: 
     refresh_token(token, response)
     return Result.success(Constants.MODIFY_PASSWORD_SUCCESS)
 
+
+@router.post("/upload/")
+async def upload_file(file: UploadFile = File(...)):
+    file_url = upload_file_to_oss(file)
+    if file_url is None:
+        return Result.fail("文件上传失败")
+    return Result.success(data=file_url)

@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1.endpoints import user, word
+from app.api.v1.endpoints import user, word, chat
 from app.core.response import general_exception_handler
 
 
@@ -22,6 +22,7 @@ app.add_exception_handler(Exception, general_exception_handler)
 
 app.include_router(user.router, prefix="/users", tags=["用户相关接口"])
 app.include_router(word.router, prefix="/word", tags=["单词相关接口"])
+app.include_router(chat.router, tags=["大模型相关接口"])
 
 if __name__ == "__main__":
     uvicorn.run('main:app', reload=True)
