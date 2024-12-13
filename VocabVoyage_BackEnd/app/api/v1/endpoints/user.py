@@ -91,7 +91,7 @@ async def change_password(user: UserChangePassword, request: Request, response: 
     return Result.success(Constants.MODIFY_PASSWORD_SUCCESS)
 
 
-@router.post("/update_avatar/", summary="更新用户头像")
+@router.post("/update/avatar/", summary="更新用户头像")
 async def update_avatar(request: Request, file: UploadFile = File(...), db: AsyncSession = Depends(get_db)):
     user_id, token = get_user_id_and_token(request)  # 获取用户ID
     file_url = upload_file_to_oss(file)  # 上传文件到OSS

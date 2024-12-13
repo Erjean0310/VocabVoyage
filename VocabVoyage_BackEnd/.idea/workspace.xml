@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="路由优化">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/constans.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/constans.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/crud/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/db.sql" afterDir="false" />
-    </list>
+    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="用户表新增头像、个性签名字段" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -152,6 +141,7 @@
       <workItem from="1734086127824" duration="850000" />
       <workItem from="1734088127689" duration="10229000" />
       <workItem from="1734104647098" duration="3567000" />
+      <workItem from="1734109356956" duration="73000" />
     </task>
     <task id="LOCAL-00001" summary="添加上报错误功能">
       <option name="closed" value="true" />
@@ -177,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734105038346</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="用户表新增头像、个性签名字段">
+      <option name="closed" value="true" />
+      <created>1734109412163</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1734109412163</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,18 +196,8 @@
     <MESSAGE value="添加上报错误功能" />
     <MESSAGE value="添加分页查询错误记录功能" />
     <MESSAGE value="路由优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="路由优化" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/api/v1/endpoints/user.py</url>
-          <line>79</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="用户表新增头像、个性签名字段" />
+    <option name="LAST_COMMIT_MESSAGE" value="用户表新增头像、个性签名字段" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$VocabVoyage_BackEnd.coverage" NAME="VocabVoyage_BackEnd Coverage Results" MODIFIED="1734108736731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
