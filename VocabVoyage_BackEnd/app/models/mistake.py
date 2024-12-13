@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, ForeignKey, DateTime, SmallInteger, func
+from sqlalchemy import Column, Integer, ForeignKey, DateTime, SmallInteger, func, String
 from sqlalchemy.orm import relationship
 from app.models.base import Base
 
@@ -13,6 +13,7 @@ class Mistake(Base):
     report_time = Column(DateTime, server_default=func.now(), comment="上报时间")
     resolved_time = Column(DateTime, default=None, comment="解决时间")
     is_resolved = Column(SmallInteger, default=0, comment="是否解决")
+    description = Column(String(512), default="（无描述）", comment="错误描述")
 
     word = relationship("Word", back_populates="mistakes")
     reporter = relationship("User", foreign_keys=[reporter_id], back_populates="reported_mistakes")

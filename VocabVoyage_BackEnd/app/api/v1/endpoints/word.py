@@ -3,9 +3,9 @@ from fastapi import APIRouter, Query, Depends, Request, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.session import get_db
 from app.crud.word import search_word_fuzzy, get_word_by_id, get_word_by_spell
-from app.schemas.memory import ProficiencyFilterRequest, MemorizeWordRequest
+from app.schemas.memory import ProficiencyFilterRequest, MemorizeWordRequest, ReportMistakeRequest
 from app.services.memory import get_words, handle_memory
-from app.core.result import Result
+from app.common.result import Result
 from app.core.constans import Constants
 from app.crud.word import add_mistake
 
@@ -66,12 +66,12 @@ async def list_words_to_learn(
 
 @router.post("/report/mistake", summary="上报错误")
 async def report_mistake(
+        mistake_request: ReportMistakeRequest,
         request: Request,
         response: Response,
-        word_id: int = Query(..., description="上报的单词 id"),
         db: AsyncSession = Depends(get_db)
 ):
     user_id, token = get_user_id_and_token(request)
-    await add_mistake(db, user_id, word_id)
+    await add_mistake(db, user_id, mistake_request.word_id, mistake_request.description)
     refresh_token(token, response)
     return Result.success(Constants.REPORT_SUCCESS)

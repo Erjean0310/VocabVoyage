@@ -2,7 +2,7 @@ from datetime import datetime
 from app.crud.user_sigin_in import add_sign_in_record, get_sign_in_record, update_sign_in_record
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.constans import Constants
-from app.core.result import Result
+from app.common.result import Result
 
 
 # 用户签到

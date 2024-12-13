@@ -19,6 +19,12 @@ async def get_user_by_phone(db: AsyncSession, phone: str):
     return result.scalar_one_or_none()  # 获取查询结果
 
 
+async def get_user_by_id(db: AsyncSession, user_id: int):
+    # 使用异步查询
+    result = await db.execute(select(User).filter(User.id == user_id))
+    return result.scalar_one_or_none()  # 获取查询结果
+
+
 # 验证账号密码, 成功则返回匹配的 user
 async def verify_password(db: AsyncSession, phone: str, password: str):
     user = await get_user_by_phone(db, phone)

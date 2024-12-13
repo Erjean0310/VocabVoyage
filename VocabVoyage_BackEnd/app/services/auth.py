@@ -1,7 +1,9 @@
 from datetime import datetime, timedelta, UTC
 from fastapi import HTTPException, Response, Request
+from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.config import settings
-from app.services.utils import ComplexEncoder
+from app.common.utils import ComplexEncoder
+from app.crud.user import get_user_by_id
 from app.core.constans import Constants
 import logging
 import jwt
@@ -74,4 +76,22 @@ def refresh_token_if_exists(request: Request, response: Response) -> None:
         max_age=settings.COOKIE_EXPIRE_MINUTES * 60,  # 秒
         samesite='lax'
     )
+
+
+# 获取 user_id 和 token
+async def get_admin_id_and_token(request: Request, db: AsyncSession):
+    token = request.cookies.get(settings.COOKIE_NAME)
+    payload = verify_token(token)
+    user_id = payload.get("sub")
+    if not user_id:
+        raise HTTPException(status_code=401, detail=Constants.USER_NOT_LOG_IN)
+
+    user = await get_user_by_id(db, user_id)
+    if not user:
+        raise HTTPException(status_code=401, detail=Constants.USER_NOT_LOG_IN)
+
+    if user.role != Constants.ADMIN_ROLE:
+        raise HTTPException(status_code=403, detail=Constants.PERMISSION_ERROR)
+
+    return user_id, token
 

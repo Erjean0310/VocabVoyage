@@ -9,7 +9,8 @@ CREATE TABLE user (
                       phone VARCHAR(16) UNIQUE NOT NULL COMMENT '手机号',
                       password VARCHAR(64) COMMENT '用户密码',
                       coin INT DEFAULT 0 COMMENT '金币',
-                      role VARCHAR(255) DEFAULT 'user' COMMENT '角色'
+                      role VARCHAR(255) DEFAULT 'user' COMMENT '角色',
+--                       icon VARCHAR(255) COMMENT '用户头像'
 ) COMMENT '用户表';
 
 
@@ -53,6 +54,7 @@ CREATE TABLE mistake (
                          report_time DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL comment '上报时间',
                          resolved_time DATETIME DEFAULT NULL COMMENT '解决时间',
                          is_resolved TINYINT DEFAULT 0 COMMENT '是否解决',
+                         description VARCHAR(512) COMMENT '错误描述',
 
                          FOREIGN KEY (reporter_id) REFERENCES user(id),
                          FOREIGN KEY (solver_id) REFERENCES user(id),

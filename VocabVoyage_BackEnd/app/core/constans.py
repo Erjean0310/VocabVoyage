@@ -13,6 +13,9 @@ class Constants:
     SIGN_IN_SUCCESS = "签到成功!"
     MODIFY_PASSWORD_SUCCESS = "密码修改成功"
 
+    ADMIN_ROLE = 'admin'
+    PERMISSION_ERROR = "权限不足"
+
     # 单词记忆常量
     FAMILIAR_WORD_WEIGHT = 0.1
     DEFAULT_MEMORIZE_WORD_COUNT = 10

@@ -4,7 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="添加上报错误功能" />
+    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="添加上报错误功能">
+      <change afterPath="$PROJECT_DIR$/../.idea/VocabVoyage.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/v1/endpoints/mistake.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/common/page_query.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/crud/mistake.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/page_query_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/mistake.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/word.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/constans.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/constans.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/response.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/result.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/word.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/mistake.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/mistake.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/memory.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/memory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/user_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/db.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +49,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Erjean0310"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Erjean0310/VocabVoyage.git",
+    "accountId": "4351c7f1-7788-4014-8d92-933c4a0ce446"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -31,30 +70,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;FastAPI.VocabVoyage_BackEnd.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Code/VocabVoyage/VocabVoyage_BackEnd/tests&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "FastAPI.VocabVoyage_BackEnd.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "E:/Code/VocabVoyage/VocabVoyage_BackEnd/tests",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Code\VocabVoyage\VocabVoyage_BackEnd\tests" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Code\VocabVoyage\VocabVoyage_BackEnd\app\common" />
+      <recent name="E:\Code\VocabVoyage\VocabVoyage_BackEnd\app\views" />
+      <recent name="E:\Code\VocabVoyage\VocabVoyage_BackEnd\app\schemas" />
       <recent name="E:\Code\VocabVoyage\VocabVoyage_BackEnd" />
     </key>
   </component>
@@ -123,6 +166,7 @@
       <workItem from="1734069439584" duration="4676000" />
       <workItem from="1734079401727" duration="6663000" />
       <workItem from="1734086127824" duration="850000" />
+      <workItem from="1734088127689" duration="10085000" />
     </task>
     <task id="LOCAL-00001" summary="添加上报错误功能">
       <option name="closed" value="true" />
@@ -154,7 +198,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="添加上报错误功能" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$VocabVoyage_BackEnd.coverage" NAME="VocabVoyage_BackEnd Coverage Results" MODIFIED="1734085380870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$VocabVoyage_BackEnd.coverage" NAME="VocabVoyage_BackEnd Coverage Results" MODIFIED="1734104342868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$test.coverage" NAME="test Coverage Results" MODIFIED="1734079518765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

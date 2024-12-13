@@ -4,7 +4,7 @@ from sqlalchemy import func
 from app.models.word import Word
 from app.models.mistake import Mistake
 from fastapi.encoders import jsonable_encoder
-from app.core.response import CustomException
+from app.common.response import CustomException
 from app.core.constans import Constants
 
 
@@ -46,10 +46,11 @@ async def get_word_by_spell(spell: str, db: AsyncSession):
     return word
 
 
-async def add_mistake(db: AsyncSession, reporter_id: int, word_id: int):
+async def add_mistake(db: AsyncSession, reporter_id: int, word_id: int, description: str):
     mistake = Mistake(
         word_id=word_id,
-        reporter_id=reporter_id
+        reporter_id=reporter_id,
+        description=description
     )
     db.add(mistake)
     await db.commit()
