@@ -8,7 +8,7 @@ from app.schemas.chat_resquest import ChatRequest
 router = APIRouter()
 
 
-@router.post("/chat")
+@router.post("/chat", summary="大模型询问")
 async def chat(request: ChatRequest):  # 使用 ChatRequest 作为请求参数
     messages = request.messages
     model = request.model

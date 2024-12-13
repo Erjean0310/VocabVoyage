@@ -73,7 +73,7 @@ async def sign_in(request: Request, response: Response, db: AsyncSession = Depen
     return result
 
 
-@router.post("/change-password", summary="修改密码")
+@router.post("/change/password", summary="修改密码")
 async def change_password(user: UserChangePassword, request: Request, response: Response, db: AsyncSession = Depends(get_db)):
     user_id, token = get_user_id_and_token(request)
     # 根据手机号获取用户
@@ -91,9 +91,9 @@ async def change_password(user: UserChangePassword, request: Request, response: 
     return Result.success(Constants.MODIFY_PASSWORD_SUCCESS)
 
 
-@router.post("/upload/")
+@router.post("/upload/", summary="上传头像")
 async def upload_file(file: UploadFile = File(...)):
     file_url = upload_file_to_oss(file)
     if file_url is None:
-        return Result.fail("文件上传失败")
+        return Result.fail("头像上传失败")
     return Result.success(data=file_url)

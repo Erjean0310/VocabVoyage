@@ -9,7 +9,7 @@ from app.common.result import Result
 router = APIRouter()
 
 
-@router.get("/check/status")
+@router.get("/check/status", summary="检查管理员身份")
 async def check_admin_status(
         request: Request,
         response: Response,
