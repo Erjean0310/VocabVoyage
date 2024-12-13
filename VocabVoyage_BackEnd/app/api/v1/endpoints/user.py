@@ -1,5 +1,5 @@
 # api/v1/endpoints/user.py
-from fastapi import APIRouter, Depends, Response, Request
+from fastapi import APIRouter, Depends, Response, Request, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.session import get_db
 from app.crud.user import create_user, get_user_by_phone, verify_password, update_user_password

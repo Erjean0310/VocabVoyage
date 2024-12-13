@@ -12,3 +12,4 @@ class Word(Base):
     description = Column(String(1024), comment="单词描述")
     
     memories = relationship("Memory", back_populates="word")
+    mistakes = relationship("Mistake", back_populates="word")

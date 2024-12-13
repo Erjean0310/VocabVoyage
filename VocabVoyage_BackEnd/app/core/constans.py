@@ -18,3 +18,5 @@ class Constants:
     DEFAULT_MEMORIZE_WORD_COUNT = 10
 
     WORD_NOT_FOUND = "找不到该单词信息"
+
+    REPORT_SUCCESS = "上报成功"

@@ -2,6 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy import func
 from app.models.word import Word
+from app.models.mistake import Mistake
 from fastapi.encoders import jsonable_encoder
 from app.core.response import CustomException
 from app.core.constans import Constants
@@ -43,3 +44,14 @@ async def get_word_by_spell(spell: str, db: AsyncSession):
 
     word = jsonable_encoder(word)
     return word
+
+
+async def add_mistake(db: AsyncSession, reporter_id: int, word_id: int):
+    mistake = Mistake(
+        word_id=word_id,
+        reporter_id=reporter_id
+    )
+    db.add(mistake)
+    await db.commit()
+    # await db.refresh(mistake)
+    # return mistake
