@@ -3,7 +3,7 @@
 
     <div class="top_section">
         <!-- 上面的部分内容 -->
-        <!-- <img src="http://vocab-voyage.oss-cn-beijing.aliyuncs.com/kk.jpg" style="width: 100px;height: 100px;"> -->
+
 
         <div class="menu" >
           <div class="search-container" style="display: flex; justify-content: center; align-items: center; flex: 1;">
@@ -47,7 +47,7 @@
               <div class="card">
                 <a class="card1" href="#">
                   <div class="word_and_sound">
-                    <p>This is heading</p>
+                    <p>{{ word}}</p>
                     <!-- TODO音标 -->
                     <el-button  
                       class="sound_button"
@@ -74,13 +74,35 @@
           <div class="right-top">
             <!-- 右边上面的部分内容 -->
 
-            <el-tabs type="border-card" class="detail_screen">
-                <el-tab-pane label="Describe" class="markdown-card">
+            <el-tabs type="border-card" class="detail_screen" v-model="activeTab">
+                <el-tab-pane name="Describe" label="Describe" class="markdown-card">
                     <!-- <div>123123</div> -->
                      <!-- TODO高度写死问题，滚动条问题 -->
                     <div v-html="parsedMarkdown" style="max-height: 600px; overflow-y: auto; "></div>
                 </el-tab-pane>
-                <el-tab-pane label="Chat">Chat</el-tab-pane>
+                <el-tab-pane name="Chat" label="Chat">
+
+                  <div class="chat-container">
+                    <div class="chat-messages">
+                      <div v-for="(message, index) in messages" :key="index" class="message">
+                        <div :class="['message-bubble', message.role]">
+                          <span v-if="message.streaming">{{ message.content }}</span>
+                          <span v-else>{{ message.content }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="chat-input">
+                      <input
+                        v-model="newMessage"
+                        @keyup.enter="sendMessage"
+                        placeholder="Type your message..."
+                      />
+                      <button @click="sendMessage">Send</button>
+                    </div> -->
+                  </div>
+
+
+                </el-tab-pane>
 
             </el-tabs>
 
@@ -89,6 +111,29 @@
           </div>
           <div class="right-bottom">
             <!-- 右边下面的部分内容 -->
+             <div v-if="activeTab == 'Describe'" class="three_button">
+              <el-button type="primary" size="large" >认识</el-button>
+              <el-button type="warning" size="large">模糊</el-button>
+              <el-button type="danger" size="large">忘记</el-button>
+             </div>
+
+
+
+             <div v-else-if="activeTab == 'Chat'" class="chat-input">
+              <textarea
+                v-model="newMessage"
+                @keyup.enter="sendMessage"
+                placeholder="Try to ask..."
+                style="width: 100%; height: 100%; box-sizing: border-box;padding: 10px; font-size: large; overflow-y: auto; resize: none;"
+              />
+                <!-- <input
+                  v-model="newMessage"
+                  @keyup.enter="sendMessage"
+                  type="textarea"
+                  placeholder="Try to ask..."
+                /> -->
+                <button @click="sendMessage">Send</button>
+              </div>
           </div>
         </div>
       </div>
@@ -106,7 +151,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 
 import { Search, VideoPlay } from '@element-plus/icons-vue';
 import { marked } from 'marked';
@@ -114,6 +159,12 @@ import { marked } from 'marked';
 const search_input = ref("")
 const drawer = ref(false)
 
+const activeTab = ref('Describe'); // 默认选中 Describe 标签
+
+const textarea2 = ref("")
+
+
+const word = ref("cancel")
 // // 接收传入的 Markdown 内容
 // const props = defineProps({
 //   markdownContent: {
@@ -122,9 +173,11 @@ const drawer = ref(false)
 //   }
 // })
 
-const audio = new Audio('http://dict.youdao.com/dictvoice?type=1&audio=cancel');
 
+// TODO循环页面
 const handle_sound = () => {
+  
+  const audio = new Audio('http://dict.youdao.com/dictvoice?type=1&audio=cancel');
     audio.play();
 }
 
@@ -184,6 +237,26 @@ const parsedMarkdown = ref(`
 // The baby in the cradle gurgled happily, his little hands reaching for the colorful mobile above. His mother sang a soft lullaby, her gentle voice filling the nursery.  
 // 摇篮中的婴儿开心地咯咯笑着，他的小手伸向上面的彩色移动挂饰。他的妈妈温柔地唱着摇篮曲，她的声音充满了婴儿房。
 
+### 单词变形
+// The baby in the cradle gurgled happily, his little hands reaching for the colorful mobile above. His mother sang a soft lullaby, her gentle voice filling the nursery.  
+// 摇篮中的婴儿开心地咯咯笑着，他的小手伸向上面的彩色移动挂饰。他的妈妈温柔地唱着摇篮曲，她的声音充满了婴儿房。
+
+
+### 单词变形
+// The baby in the cradle gurgled happily, his little hands reaching for the colorful mobile above. His mother sang a soft lullaby, her gentle voice filling the nursery.  
+// 摇篮中的婴儿开心地咯咯笑着，他的小手伸向上面的彩色移动挂饰。他的妈妈温柔地唱着摇篮曲，她的声音充满了婴儿房。
+
+
+### 单词变形
+// The baby in the cradle gurgled happily, his little hands reaching for the colorful mobile above. His mother sang a soft lullaby, her gentle voice filling the nursery.  
+// 摇篮中的婴儿开心地咯咯笑着，他的小手伸向上面的彩色移动挂饰。他的妈妈温柔地唱着摇篮曲，她的声音充满了婴儿房。
+
+
+### 单词变形
+// The baby in the cradle gurgled happily, his little hands reaching for the colorful mobile above. His mother sang a soft lullaby, her gentle voice filling the nursery.  
+// 摇篮中的婴儿开心地咯咯笑着，他的小手伸向上面的彩色移动挂饰。他的妈妈温柔地唱着摇篮曲，她的声音充满了婴儿房。
+
+
 
 
 
@@ -208,13 +281,61 @@ const handle_search = ()=>{
 }
 
 
+// 大模型对话函数部分
+
+const messages = reactive([])
+const newMessage = ref('')
+
+const sendMessage = async () => {
+  if (newMessage.value.trim()) {
+    messages.push({ role: 'user', content: newMessage.value })
+    newMessage.value = ''
+
+    const response = await fetch('http://vyiaqx.natappfree.cc/model/chat', {//TODO 改成后端api接口
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ messages })
+    })
+
+    if (response.status === 200) {
+      const reader = response.body.getReader()
+      const decoder = new TextDecoder()
+      let assistantMessage = ''
+      messages.push({ role: 'assistant', content: '', streaming: true })
+
+      while (true) {
+        const { value, done } = await reader.read()
+        if (done) break
+
+        const chunk = decoder.decode(value, { stream: true })
+        assistantMessage += chunk
+        messages[messages.length - 1].content += chunk
+      }
+
+      messages[messages.length - 1].streaming = false
+    } else {
+      console.error('Error:', response.status)
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
 </script>
 
 
 
 <style scoped>
 @import "Card.less";
-
+@import "ChatAssistent.less";
 .top_section{
   width: 80%;
 
@@ -232,7 +353,7 @@ const handle_search = ()=>{
 /* TODO演示颜色，后续可删除或替换背景 */
   background-color: rgb(113, 17, 17);
   /* 确保不出现滚动条 */
-  /* overflow: hidden;  */
+  overflow: hidden; 
 }
 .container {
   display: flex;

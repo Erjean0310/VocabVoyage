@@ -15,7 +15,7 @@ const routes = [
   {
     path: "/",
     //路由懒加载
-    component: () => import("../components/HelloWorld.vue"),
+    component: () => import("../components/Login.vue"),
   },
   {
     path: "/Signup",
@@ -25,6 +25,10 @@ const routes = [
   {
     path: "/ChatAsistent",
     component: () => import("../components/ChatAssistent.vue"),
+  },
+  {
+    path: "/EnglishStudy",
+    component: () => import("../components/EnglishStudy.vue"),
   },
   // {
   //   path: "/FinanceBookView",

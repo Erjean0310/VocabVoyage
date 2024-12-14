@@ -41,7 +41,8 @@
       <p class="reg in-3">
         还没有账号？
         <!-- TODO路由设置跳转注册界面！！！！！ -->
-        <el-link type="warning" >注册</el-link>
+        <el-link type="warning"  @click="handle_click_to_signup">注册</el-link>
+         <!-- <el-button>注册</el-button> -->
       </p>
     </el-card>
   </div>
@@ -50,7 +51,9 @@
 <script setup>
 import { ref } from 'vue';
 import request from "../utils/request";
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 
 const form = ref({
   phone: '',
@@ -77,6 +80,11 @@ const handleLogin = () => {
 
 
 };
+
+const handle_click_to_signup = ()=>{
+  router.push("/Signup")
+
+}
 </script>
 
 <style scoped lang="less">
