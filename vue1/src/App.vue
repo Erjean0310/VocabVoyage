@@ -59,7 +59,9 @@ const dialogClose = () => {
         <div style="margin-bottom: 23px;">手机号：(+86){{ data.phone }}</div>
         <div style="margin-bottom: 23px;">邮件地址：{{ data.radio }}</div>
         <div style="margin-bottom: 40px;">密码：{{ data.oldPassword }}
-            <el-button @click="dialog = true" style="margin-top: 0px; font-size: 20px; margin-left: 320px; color:blue">重置</el-button>
+            <el-button @click="dialog = true" style="margin-top: 0px; font-size: 20px; margin-left: 320px; background-color: #409EFF; /* 设置按钮背景色为Element Plus默认的蓝色 */
+    border: none; /* 去除边框 */
+    color: white;">重置</el-button>
         </div>
     </div>
     <hr style="margin-left: 550px; margin-top: 10px; width: 1500px; border: none; border-top: 1px solid #ccc;">
@@ -71,7 +73,11 @@ const dialogClose = () => {
         <div style="margin-bottom: 23px;">联系地址：<span style="margin-left: 10px; font-size: 23px; color: #808080;">中国湖北省武汉市洪山区湖北省武汉市武汉理工大学南湖校区 430070</span></div>
         <div style="margin-bottom: 23px;">所背词书：<span style="margin-left: 10px; font-size: 23px; color: #808080;">六级词书</span></div>
     </div>
-
+    <hr style="margin-left: 550px; margin-top: 30px; width: 1500px; border: none; border-top: 1px solid #ccc;"> <!-- 调整此处的 margin-top 与用户进度信息一致 -->
+    <div>
+        <div class="progress-info" style="margin-left: 550px; margin-top: 30px;">关闭个人信息</div>
+        <el-button type="primary" class="close-btn" style="margin-left: 550px; margin-top: 40px; font-size: 20px; border-radius: 5px; padding: 5px 50px; width: 200px;">关闭</el-button> <!-- 增加距离、拉长按钮 -->
+    </div>
     <!-- draggable 允许拖拽 -->
     <el-dialog v-model="dialog" width="700" title="修改密码" draggable @close="dialogClose">
         <el-form label-width="100">
@@ -169,5 +175,14 @@ el-input {
     font-size: 35px;
     margin-left: 20px; /* 让输入框往右移一点 */
     color: #000; /* 设置为黑色 */
+}
+
+.close-btn {
+    background-color: #409EFF; /* 设置按钮背景色为Element Plus默认的蓝色 */
+    border: none; /* 去除边框 */
+    color: white; /* 设置文字颜色为白色 */
+    /* 拉长按钮 */
+    padding: 5px 50px;
+    width: 200px;
 }
 </style>
