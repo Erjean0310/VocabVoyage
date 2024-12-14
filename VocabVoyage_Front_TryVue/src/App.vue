@@ -2,10 +2,10 @@
 <template>
 
   <!-- <Study></Study> -->
-  <!-- <EnglishStudy></EnglishStudy> -->
+  <EnglishStudy></EnglishStudy>
   
   
-  <Login></Login>
+  <!-- <Login></Login> -->
   <!-- <Signup></Signup> -->
   <!-- <ChatAssistent ></ChatAssistent> -->
 
@@ -20,6 +20,7 @@ import EnglishStudy from './components/EnglishStudy.vue';
 import Login from './components/Login.vue';
 import ChatAssistent from './components/ChatAssistent.vue';
 import Signup from './components/Signup.vue';
+
 
 </script>
 

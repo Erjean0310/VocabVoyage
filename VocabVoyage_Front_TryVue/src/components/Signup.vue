@@ -84,7 +84,7 @@ const handleLogin = () => {
     let is_same_password = form.value.confirm_password === form.value.password;
 
     if(is_same_password){
-        let url = "/users/register";
+        let url = "/user/register";
         request.post(url, form.value).then(res => {
             console.log("返回信息")
             console.log(res)

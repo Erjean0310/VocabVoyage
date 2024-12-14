@@ -40,7 +40,8 @@
 
       <p class="reg in-3">
         还没有账号？
-        <el-link type="warning"  :to="{ path: '/signup' }">注册</el-link>
+        <!-- TODO路由设置跳转注册界面！！！！！ -->
+        <el-link type="warning" >注册</el-link>
       </p>
     </el-card>
   </div>
@@ -60,7 +61,7 @@ const handleLogin = () => {
   // 登录逻辑
   console.log('登录信息:', form.value);
 
-  let url = "/users/login";
+  let url = "/user/login";
     request.post(url, form.value).then(res => {
       console.log("Message received")
       console.log(res)
