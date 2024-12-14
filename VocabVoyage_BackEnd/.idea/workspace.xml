@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="用户表新增头像、个性签名字段" />
+    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="用户表新增头像、个性签名字段">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -142,6 +146,8 @@
       <workItem from="1734088127689" duration="10229000" />
       <workItem from="1734104647098" duration="3567000" />
       <workItem from="1734109356956" duration="73000" />
+      <workItem from="1734109441071" duration="32000" />
+      <workItem from="1734148716627" duration="624000" />
     </task>
     <task id="LOCAL-00001" summary="添加上报错误功能">
       <option name="closed" value="true" />
@@ -175,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734109412163</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="用户表新增头像、个性签名字段">
+      <option name="closed" value="true" />
+      <created>1734109459293</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1734109459293</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

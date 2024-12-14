@@ -2,7 +2,8 @@
 from fastapi import APIRouter, Depends, Response, Request, File, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.session import get_db
-from app.crud.user import create_user, get_user_by_phone, verify_password, update_user_password, update_user_fields
+from app.crud.user import (create_user, get_user_by_phone, verify_password,
+                           update_user_password, update_user_fields, get_user_by_id)
 from app.schemas.user import UserCreate, UserLogin, UserChangePassword
 from app.services.auth import create_token, refresh_token, get_user_id_and_token
 from app.core.config import settings
@@ -13,6 +14,14 @@ from app.services.file_upload import upload_file_to_oss
 
 
 router = APIRouter()
+
+
+@router.get("/me", summary="获取个人信息")
+async def user_info(request: Request, response: Response, db: AsyncSession = Depends(get_db)):
+    user_id, token = get_user_id_and_token(request)
+    user = await get_user_by_id(db, user_id)
+    refresh_token(token, response)
+    return Result.success(data=user)
 
 
 @router.post("/register", summary="用户注册")
