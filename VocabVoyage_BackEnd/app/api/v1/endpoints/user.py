@@ -7,7 +7,7 @@ from app.crud.user import (create_user, get_user_by_phone, verify_password,
 from app.schemas.user import UserCreate, UserLogin, UserChangePassword
 from app.services.auth import create_token, refresh_token, get_user_id_and_token
 from app.core.config import settings
-from app.services.user_service import user_sign_in
+from app.services.user_service import user_sign_in, check_sign_in_status
 from app.core.constans import Constants
 from app.common.result import Result
 from app.services.file_upload import upload_file_to_oss
@@ -74,12 +74,20 @@ async def logout_user(response: Response):
     return Result.success(Constants.LOGOUT_SUCCESSFUL)
 
 
-@router.get("/sign/in", summary="签到")
+@router.put("/sign/in", summary="签到")
 async def sign_in(request: Request, response: Response, db: AsyncSession = Depends(get_db)):
     user_id, token = get_user_id_and_token(request)
     result = await user_sign_in(db, user_id)
     refresh_token(token, response)
     return result
+
+
+@router.get("/sign/in/status", summary="检查当前用户是否已经签到")
+async def sign_in_status(response: Response, request: Request, db: AsyncSession = Depends(get_db)):
+    user_id, token = get_user_id_and_token(request)
+    result = await check_sign_in_status(db, user_id)
+    refresh_token(token, response)
+    return Result.success(data=result)
 
 
 @router.post("/change/password", summary="修改密码")

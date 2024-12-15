@@ -30,7 +30,7 @@ async def get_word(word_id: int, request: Request, response: Response, db: Async
     return Result.success(data=result)
 
 
-@router.post("/", summary="根据单词拼写获取单词信息")
+@router.get("/", summary="根据单词拼写获取单词信息")
 async def get_word_detail(
         request: Request,
         response: Response,
@@ -60,6 +60,3 @@ async def list_words_to_learn(
     result = await get_words(db, user_id, proficiency_filter.new_word_weight, proficiency_filter.count)
     refresh_token(token, response)
     return Result.success(data=result)
-
-
-

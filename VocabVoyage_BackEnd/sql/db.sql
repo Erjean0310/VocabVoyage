@@ -60,4 +60,13 @@ CREATE TABLE mistake (
                          FOREIGN KEY (reporter_id) REFERENCES user(id),
                          FOREIGN KEY (solver_id) REFERENCES user(id),
                          FOREIGN KEY (word_id) REFERENCES word(id)
-) COMMENT '错误表'
+) COMMENT '错误表';
+
+
+
+# 视图：展示每个用户的单词记忆情况，包括记忆单词总数、熟练度分布等。
+CREATE VIEW user_word_stats AS
+SELECT u.id AS user_id, COUNT(m.id) AS total_memorized_words, AVG(m.proficiency) AS average_proficiency
+FROM user u
+         JOIN memory m ON u.id = m.user_id
+GROUP BY u.id;

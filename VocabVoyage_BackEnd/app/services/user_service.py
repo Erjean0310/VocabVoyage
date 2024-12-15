@@ -32,6 +32,20 @@ async def user_sign_in(db: AsyncSession, user_id: int):
     return Result.success(Constants.SIGN_IN_SUCCESS)
 
 
+# 检查用户登录状态
+async def check_sign_in_status(db: AsyncSession, user_id: int):
+    cur_date = datetime.now()
+    year_month_str = cur_date.strftime("%Y-%m")
+    record = await get_sign_in_record(db, user_id, year_month_str)
+
+    if record:
+        day = cur_date.day
+        offset = 1 << day
+        is_signed_in = record & offset
+        if is_signed_in:
+            return True
+    return False
+
 
 
 

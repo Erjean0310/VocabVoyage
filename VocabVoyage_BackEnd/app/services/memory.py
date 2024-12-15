@@ -3,6 +3,8 @@ import random
 from app.core.constans import Constants
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.crud.memory import list_words_by_proficiency, get_proficiency_of_word, update_proficiency
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import text
 
 
 """
@@ -18,17 +20,26 @@ from app.crud.memory import list_words_by_proficiency, get_proficiency_of_word, 
 
 
 async def handle_memory(db: AsyncSession, user_id, word_id: int, mem_res: int):
-    proficiency = await get_proficiency_of_word(db, word_id, user_id)
-    print("==sss==", type(proficiency))
-    match mem_res:
-        case 1:  # 认识
-            proficiency = proficiency * 0.7 + 100 * 0.3
-        case 2:  # 模糊
-            proficiency = proficiency * 0.9
-        case 3:  # 忘记
-            proficiency = proficiency * 0.3
-    proficiency = int(proficiency)
-    await update_proficiency(db, word_id, proficiency, user_id)
+    try:
+        await db.execute(
+            text("CALL update_proficiency(:p_word_id, :p_user_id, :mem_res)"),
+            {"p_word_id": word_id, "p_user_id": user_id, "mem_res": mem_res}
+        )
+        await db.commit()
+    except Exception as e:
+        await db.rollback()
+        raise HTTPException(status_code=400, detail=str(e))
+
+    # proficiency = await get_proficiency_of_word(db, word_id, user_id)
+    # match mem_res:
+    #     case 1:  # 认识
+    #         proficiency = proficiency * 0.7 + 100 * 0.3
+    #     case 2:  # 模糊
+    #         proficiency = proficiency * 0.9
+    #     case 3:  # 忘记
+    #         proficiency = proficiency * 0.3
+    # proficiency = int(proficiency)
+    # await update_proficiency(db, word_id, proficiency, user_id)
 
 
 async def get_words(db: AsyncSession, user_id: int, new_word_weight, count: int):
