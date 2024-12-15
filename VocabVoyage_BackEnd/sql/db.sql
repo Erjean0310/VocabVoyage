@@ -1,3 +1,17 @@
+-- 创建用户 vv_user
+CREATE USER 'vv_user'@'%' IDENTIFIED BY '412412';
+
+-- 授予权限
+GRANT SELECT, INSERT, UPDATE, DELETE ON vocab_voyage.* TO 'vv_user'@'%';
+
+-- 应用权限更改
+FLUSH PRIVILEGES;
+
+
+
+
+
+
 -- 创建数据库
 CREATE DATABASE IF NOT EXISTS vocab_voyage;
 USE vocab_voyage;

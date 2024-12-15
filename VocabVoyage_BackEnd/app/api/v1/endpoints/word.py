@@ -43,7 +43,10 @@ async def get_word_detail(
 
 @router.post("/memorize", summary="根据记忆结果更新熟练度值")
 async def memorize_word(memorize_request: MemorizeWordRequest, request: Request, response: Response, db: AsyncSession = Depends(get_db)):
+    print(request.values())
+
     user_id, token = get_user_id_and_token(request)
+    print("我进来了")
     await handle_memory(db, user_id, memorize_request.word_id, memorize_request.mem_res)
     refresh_token(token, response)
     return Result.success()
