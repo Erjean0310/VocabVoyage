@@ -105,9 +105,9 @@
           <div class="right-bottom">
             <!-- 右边下面的部分内容 -->
              <div v-if="activeTab == 'Describe'" class="three_button">
-              <el-button type="primary" size="large" >认识</el-button>
-              <el-button type="warning" size="large">模糊</el-button>
-              <el-button type="danger" size="large">忘记</el-button>
+              <el-button type="primary" size="large" @click="sendMemoryResult(1)">认识</el-button>
+              <el-button type="warning" size="large" @click="sendMemoryResult(2)">模糊</el-button>
+              <el-button type="danger" size="large" @click="sendMemoryResult(3)">忘记</el-button>
              </div>
 
 
@@ -212,41 +212,6 @@ const sendMessage = async () => {
   }
 }
 
-// const sendMessage = async () => {
-//   if (newMessage.value.trim()) {
-//     messages.push({ role: 'user', content: newMessage.value })
-//     newMessage.value = ''
-
-//     const response = await fetch('http://vyiaqx.natappfree.cc/model/chat', {//TODO 改成后端api接口
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({ messages })
-//     })
-
-//     if (response.status === 200) {
-//       const reader = response.body.getReader()
-//       const decoder = new TextDecoder()
-//       let assistantMessage = ''
-//       messages.push({ role: 'assistant', content: '', streaming: true })
-
-//       while (true) {
-//         const { value, done } = await reader.read()
-//         if (done) break
-
-//         const chunk = decoder.decode(value, { stream: true })
-//         assistantMessage += chunk
-//         messages[messages.length - 1].content += chunk
-//       }
-
-//       messages[messages.length - 1].streaming = false
-//     } else {
-//       console.error('Error:', response.status)
-//     }
-//   }
-// }
-
 
 // 组件挂载后解析 Markdown 内容
 // onMounted(() => {)
@@ -325,6 +290,31 @@ const handleCardClick = (word) => {
   selectedWordInfo.value.description = marked(selectedWordInfo.value.description)
   // selectedDescription.value = marked(word.description); // 删除此行
 };
+
+const sendMemoryResult = async (memRes) => {
+  if (selectedWordInfo.value.id) {
+    const response = await fetch('http://ahv5jw.natappfree.cc/word/memorize', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        word_id: selectedWordInfo.value.id,
+        mem_res: memRes
+      })
+    });
+
+    console.log(response)
+    if (response.code == '1') {
+      console.log('Memory result sent successfully');
+    } else {
+      console.error('Error sending memory result:', response.message);
+    }
+  } else {
+    console.error('No selected word ID available');
+  }
+}
 
 
 
@@ -442,7 +432,7 @@ const handleCardClick = (word) => {
     /* flex: 0 0 20%; */
   flex: 1; 
   padding:16px 0px 16px 16px;
-  /* TODO演示颜色，后续可删除或替换背景 */
+  /* TODO演示颜色，后续可删除或替���背景 */
   background-color: rgb(0, 187, 255);
   /* height: 20%; */
 }

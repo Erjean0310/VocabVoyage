@@ -4,6 +4,7 @@ import axios from 'axios'
 const request = axios.create({
     baseURL: "http://ahv5jw.natappfree.cc",//TODO最后改成实际url
     timeout: 5000,
+    withCredentials: true
 });
 
 //request拦截器
