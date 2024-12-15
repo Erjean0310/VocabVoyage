@@ -38,6 +38,15 @@ const routes = [
     path: "/Login",
     component: () => import("../components/Login.vue"),
   },
+  {
+    path: "/Personal",
+    component: () => import("../components/Personal.vue"),
+  },
+  {
+    path: "/Home",
+    component: () => import("../components/Home.vue"),
+  },
+
 
 
   

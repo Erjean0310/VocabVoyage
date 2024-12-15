@@ -134,7 +134,9 @@
 
 
     <el-drawer v-model="drawer" title="I am the title" :with-header="false">
-        <span>Hi there!</span>
+
+      <el-button type="primary" @click="handleProfileClick">To Your Profile</el-button>
+
         
     </el-drawer>
 
@@ -150,6 +152,7 @@ import { VideoPlay } from '@element-plus/icons-vue';
 import { marked } from 'marked';
 import SearchContainer from './SearchContainer.vue';
 import request from "../utils/request";
+import router from '../router';
 
 const drawer = ref(false)
 
@@ -177,7 +180,7 @@ const sendMessage = async () => {
     messages.push({ role: 'user', content: userMessage })
     newMessage.value = ''
 
-    const response = await fetch('http://xpvyrs.natappfree.cc/model/chat', {
+    const response = await fetch('http://ahv5jw.natappfree.cc/model/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -316,6 +319,10 @@ const sendMemoryResult = async (memRes) => {
   }
 }
 
+
+const handleProfileClick = ()=>{
+  router.push("/Personal")
+}
 
 
 

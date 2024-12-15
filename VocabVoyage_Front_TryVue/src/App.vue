@@ -17,12 +17,6 @@
 <script setup>
 
 
-import Study from './components/Study.vue';
-import EnglishStudy from './components/EnglishStudy.vue';
-import Login from './components/Login.vue';
-import ChatAssistent from './components/ChatAssistent.vue';
-import Signup from './components/Signup.vue';
-import test from './components/test.vue';
 
 import { useRouter } from 'vue-router';
 
@@ -40,6 +34,13 @@ const goToSignup = () => {
 
 *{
   margin: 0;
+}
+
+@font-face {
+  font-family: 'Showcard Gothic';
+  src: url('../src/fonts/SHOWG.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 </style>
