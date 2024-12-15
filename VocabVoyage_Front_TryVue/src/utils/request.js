@@ -2,7 +2,7 @@ import axios from 'axios'
 
 //创建一个axios对象出来
 const request = axios.create({
-    baseURL: "http://localhost:8000",
+    baseURL: "http://ahv5jw.natappfree.cc",//TODO最后改成实际url
     timeout: 5000,
 });
 

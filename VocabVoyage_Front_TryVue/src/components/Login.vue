@@ -65,18 +65,18 @@ const handleLogin = () => {
   console.log('登录信息:', form.value);
 
   let url = "/user/login";
-    request.post(url, form.value).then(res => {
-      console.log("Message received")
-      console.log(res)
-        if (res.code == '0') {
-          alert("登录失败，手机号或密码错误！！")
-          console.log("成功接收到信息，但是出错")
+  request.post(url, form.value).then(res => {
+    console.log("Message received")
+    console.log(res)
+      if (res.code == '0') {
+        alert("登录失败，手机号或密码错误！！")
+        console.log("成功接收到信息，但是出错")
 
-        } else {
-          console.log("登录成功")
+      } else {
+        console.log("登录成功")
 
-        }
-    })
+      }
+  })
 
 
 };
