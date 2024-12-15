@@ -54,7 +54,7 @@
             <el-button 
             style="background-color: aliceblue;color: black;"  
             size = "large" 
-            @click="handleLogin">注册</el-button>
+            @click="userRegister(form)">注册</el-button>
         </el-form-item>
     </el-form>
 
@@ -68,7 +68,8 @@
 
 <script setup>
 import { ref } from 'vue';
-import request from "../utils/request";
+import request from "../request.js";
+import {userRegister} from "../api/user.js";
 
 
 const form = ref({

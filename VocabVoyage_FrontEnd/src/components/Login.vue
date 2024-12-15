@@ -34,7 +34,8 @@
             <el-button 
               style="background-color: aliceblue;color: black;"  
               size = "large" 
-              @click="handleLogin">登录</el-button>
+              @click="userLogin(form)">登录</el-button>
+<!--              @click="handleLogin">登录</el-button>-->
         </el-form-item>
       </el-form>
 
@@ -50,8 +51,9 @@
 
 <script setup>
 import { ref } from 'vue';
-import request from "../utils/request";
+import request from "../request.js";
 import { useRouter } from 'vue-router';
+import {userLogin} from "../api/user.js";
 
 const router = useRouter()
 

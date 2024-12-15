@@ -151,8 +151,10 @@ import { onMounted, reactive, ref } from 'vue';
 import { VideoPlay } from '@element-plus/icons-vue';
 import { marked } from 'marked';
 import SearchContainer from './SearchContainer.vue';
-import request from "../utils/request";
+import request from "../request.js";
 import router from '../router';
+import { memorizeWord, getWordById, getWordBySpell, getLearningWord } from "../api/word.js"
+// import { modelChat } from '../api/model.js'
 
 const drawer = ref(false)
 
@@ -175,18 +177,21 @@ const messages = reactive([])
 const newMessage = ref('')
 
 const sendMessage = async () => {
+  //TODO 没有进行集成到model.js，此处写死
+  // await modelChat(newMessage.value, messages)
   if (newMessage.value.trim()) {
     const userMessage = marked(newMessage.value)
     messages.push({ role: 'user', content: userMessage })
     newMessage.value = ''
 
-    const response = await fetch('http://ahv5jw.natappfree.cc/model/chat', {
+    const response = await fetch('http://localhost:8000/model/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ messages })
     })
+
 
     if (response.status === 200) {
       const reader = response.body.getReader()
@@ -270,7 +275,7 @@ console.log(selectedWordInfo)
 
 onMounted(async () => {
   for (const id of wordIds) {
-    const response = await fetch(`http://ahv5jw.natappfree.cc/word/${id}`);
+    const response = await fetch(`http://127.0.0.1:8000/word/${id}`);
     const result = await response.json();
     if (result.code === 1) {
       result.data["id"] = id;
@@ -294,26 +299,36 @@ const handleCardClick = (word) => {
   // selectedDescription.value = marked(word.description); // 删除此行
 };
 
+
+
 const sendMemoryResult = async (memRes) => {
   if (selectedWordInfo.value.id) {
-    const response = await fetch('http://ahv5jw.natappfree.cc/word/memorize', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        word_id: selectedWordInfo.value.id,
-        mem_res: memRes
-      })
-    });
 
-    console.log(response)
-    if (response.code == '1') {
-      console.log('Memory result sent successfully');
-    } else {
-      console.error('Error sending memory result:', response.message);
-    }
+    const memorise_rank = ref({
+      word_id: selectedWordInfo.value.id,
+      mem_res: memRes
+    })
+    console.log(memorise_rank.value)
+    memorizeWord(memorise_rank.value)
+
+    // const response = await fetch('http://ahv5jw.natappfree.cc/word/memorize', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   credentials: 'include',
+    //   body: JSON.stringify({
+    //     word_id: selectedWordInfo.value.id,
+    //     mem_res: memRes
+    //   })
+    // });
+
+    // console.log(response)
+    // if (response.code == '1') {
+    //   console.log('Memory result sent successfully');
+    // } else {
+    //   console.error('Error sending memory result:', response.message);
+    // }
   } else {
     console.error('No selected word ID available');
   }
