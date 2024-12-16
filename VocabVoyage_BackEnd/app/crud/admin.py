@@ -44,3 +44,35 @@ async def export_data(db: AsyncSession, table_name: str):
         print(f"导出数据失败: {e}")
         return False
 
+
+
+# from sqlalchemy.ext.asyncio import AsyncSession
+# from sqlalchemy import text
+# from datetime import datetime
+#
+#
+# async def export_data(db: AsyncSession, table_name: str):
+#     # 获取当前日期和时间
+#     now = datetime.now()
+#     date_str = now.strftime('%Y-%m-%d')  # 获取日期字符串
+#     time_str = now.strftime('%H-%M-%S')  # 获取时分秒字符串
+#
+#     file_name = f"{table_name}_{date_str}_{time_str}.csv"  # 文件名
+#     output_dir = "/var/lib/mysql-files/"  # 固定的输出目录
+#
+#     # 拼接 SQL 语句
+#     sql_statement = f"""
+#     SELECT * INTO OUTFILE '{output_dir}{file_name}'
+#     FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+#     LINES TERMINATED BY '\\n'
+#     FROM {table_name};
+#     """
+#
+#     try:
+#         await db.execute(text(sql_statement))
+#         return True
+#     except Exception as e:
+#         return False
+#
+#
+#

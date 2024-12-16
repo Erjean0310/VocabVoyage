@@ -4,12 +4,66 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="添加获取签到记录，查询学习数据功能">
+    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="单词预处理部分">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c/storage_v2/_src_/schema/vocab_voyage.czi09g.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c/storage_v2/_src_/schema/vocab_voyage.czi09g.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c/storage_v2/_src_/schema/vocab_voyage.czi09g.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c/storage_v2/_src_/schema/vocab_voyage.czi09g.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/mistake.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/mistake.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/word.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/crud/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/page_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/page_query.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/response.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/result.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/constans.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/constans.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/memory.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/memory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/mistake.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/mistake.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/user_sigin_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/user_sigin_in.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/crud/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/word.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db/init_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/init_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db/session.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/session.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/memory.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/memory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/mistake.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/mistake.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user_sign_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user_sign_in.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/word.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/chat_resquest.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/chat_resquest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/memory.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/memory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/page_query_params.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/page_query_params.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/file_upload.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/file_upload.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/memory.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/memory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/user_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/mistake.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/mistake.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_db_connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_db_connect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_pretreatment/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_pretreatment/chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_pretreatment/check.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_pretreatment/check.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_pretreatment/data/gptwords.csv" beforeDir="false" afterPath="$PROJECT_DIR$/word_pretreatment/data/gptwords.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_pretreatment/data/words.csv" beforeDir="false" afterPath="$PROJECT_DIR$/word_pretreatment/data/words.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_pretreatment/openai_chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_pretreatment/openai_chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_pretreatment/treatment.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_pretreatment/treatment.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,27 +103,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;FastAPI.VocabVoyage_BackEnd.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Code/VocabVoyage/VocabVoyage_BackEnd/tests&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "FastAPI.VocabVoyage_BackEnd.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.mistake.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/Code/VocabVoyage/VocabVoyage_BackEnd/tests",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Code\VocabVoyage\VocabVoyage_BackEnd\tests" />
@@ -81,7 +139,7 @@
       <recent name="E:\Code\VocabVoyage\VocabVoyage_BackEnd" />
     </key>
   </component>
-  <component name="RunManager" selected="FastAPI.VocabVoyage_BackEnd">
+  <component name="RunManager">
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="VocabVoyage_BackEnd" />
       <option name="ENV_FILES" value="" />
@@ -129,8 +187,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
-        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
       </set>
     </attachedChunks>
   </component>
@@ -154,7 +211,8 @@
       <workItem from="1734190133649" duration="5678000" />
       <workItem from="1734232453713" duration="17019000" />
       <workItem from="1734286958423" duration="82000" />
-      <workItem from="1734315408623" duration="15892000" />
+      <workItem from="1734315408623" duration="13465000" />
+      <workItem from="1734331625312" duration="7050000" />
     </task>
     <task id="LOCAL-00001" summary="添加上报错误功能">
       <option name="closed" value="true" />
@@ -228,23 +286,7 @@
       <option name="project" value="LOCAL" />
       <updated>1734280676264</updated>
     </task>
-    <task id="LOCAL-00010" summary="添加获取签到记录，查询学习数据功能">
-      <option name="closed" value="true" />
-      <created>1734330543092</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1734330543092</updated>
-    </task>
-    <task id="LOCAL-00011" summary="添加获取签到记录，查询学习数据功能">
-      <option name="closed" value="true" />
-      <created>1734330574819</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1734330574819</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,11 +311,12 @@
     <MESSAGE value="新增获取个人信息接口" />
     <MESSAGE value="新增检查用户登录状态功能" />
     <MESSAGE value="单词预处理部分" />
-    <MESSAGE value="添加获取签到记录，查询学习数据功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加获取签到记录，查询学习数据功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="单词预处理部分" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$VocabVoyage_BackEnd.coverage" NAME="VocabVoyage_BackEnd Coverage Results" MODIFIED="1734332101951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$main.coverage" NAME="main Coverage Results" MODIFIED="1734334686614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$test.coverage" NAME="test Coverage Results" MODIFIED="1734328476929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$mistake.coverage" NAME="mistake Coverage Results" MODIFIED="1734334283619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/api/v1/endpoints" />
+    <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$VocabVoyage_BackEnd.coverage" NAME="VocabVoyage_BackEnd Coverage Results" MODIFIED="1734330112446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

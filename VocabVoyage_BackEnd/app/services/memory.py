@@ -68,6 +68,3 @@ async def get_words(db: AsyncSession, user_id: int, new_word_weight, count: int)
 
     random.shuffle(words)
     return words
-
-
-

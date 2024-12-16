@@ -13,7 +13,7 @@ from app.crud.word import add_mistake
 router = APIRouter()
 
 
-@router.post("/list/", response_model=PageQueryResult, summary="分页查询错误记录")
+@router.post("/list/",  summary="分页查询错误记录")
 async def list_mistakes(
     query_params: PageQueryParams,
     db: AsyncSession = Depends(get_db)
@@ -24,7 +24,8 @@ async def list_mistakes(
         page_size=query_params.page_size,
         status=query_params.status
     )
-    return PageQueryResult(mistakes=mistakes.mistakes, total=mistakes.total)
+    result = PageQueryResult(mistakes=mistakes.mistakes, total=mistakes.total)
+    return Result.success(data=result)
 
 
 @router.post("/report", summary="上报单词错误")

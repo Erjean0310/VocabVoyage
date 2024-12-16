@@ -46,6 +46,10 @@ const routes = [
     path: "/Home",
     component: () => import("../components/Home.vue"),
   },
+  {
+    path: "/AdminPage",
+    component: () => import("../components/AdminPage.vue"),
+  },
 
 
 

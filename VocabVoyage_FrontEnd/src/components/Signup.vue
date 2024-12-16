@@ -54,14 +54,10 @@
             <el-button 
             style="background-color: aliceblue;color: black;"  
             size = "large" 
-            @click="userRegister(form)">注册</el-button>
+            @click="handleRegister">注册</el-button>
         </el-form-item>
     </el-form>
 
-    <!-- <p class="reg in-3">
-        还没有账号？
-        <el-link type="warning" :to="{ path: '/signup' }" >注册</el-link>
-    </p> -->
     </el-card>
 </div>
 </template>
@@ -71,6 +67,7 @@ import { ref } from 'vue';
 import request from "../request.js";
 import {userRegister} from "../api/user.js";
 
+import router from '../router/index.js';
 
 const form = ref({
     nick_name: '',
@@ -79,25 +76,23 @@ const form = ref({
     confirm_password: '',
 });
 
-const handleLogin = () => {
+const handleRegister = async () => {
     console.log('注册信息:', form.value);
 
     let is_same_password = form.value.confirm_password === form.value.password;
 
     if(is_same_password){
-        let url = "/user/register";
-        request.post(url, form.value).then(res => {
-            console.log("返回信息")
-            console.log(res)
 
-            if (res.code == '0') {
-                alert("注册失败！" + res.message)
+        const res = await userRegister(form.value)
+        if (res.data.code == 0) {
+                alert("注册失败！" + res.data.message)
                 console.log("成功接收到信息，但是出错")
             } else {
-                console.log("注册成功！")
-                alert("注册成功！")
+                console.log("注册成功！");
+                // alert("注册成功！");
+                router.push("/Home");
+                
             }
-        })
     }else{
         alert("两次密码不一致！请重新输入！！！")
         console.log("两次密码输入不一致！！！")

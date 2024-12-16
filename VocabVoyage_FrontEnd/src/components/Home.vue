@@ -10,20 +10,20 @@
             <div class="description">
                 <p class="description_text">
                     DESCRIPTION:<br/>
-                    <u>Vocabulary Voyage is a English language learning website that provides users with a platform to learn Chinese words and phrases. The website provides users with a variety of exercises and activities to help them improve their Chinese language skills.</u>
+                    <u>Vocabulary Voyage is a English language learning website that provides users with a platform to learn English words and phrases. The website provides users with a variety of exercises and activities to help them improve their English language skills.</u>
                      
                 </p>
             </div>
         </div>
         <div class="right">
             <div class="signIn_button">
-                <button class="button">
+                <button @click="handleSignIn" class="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="60" viewBox="0 0 24 24" height="60" fill="none" class="svg-icon"><g stroke-width="2" stroke-linecap="round" stroke="#fff"><rect y="5" x="4" width="16" rx="2" height="16"></rect><path d="m8 3v4"></path><path d="m16 3v4"></path><path d="m4 11h16"></path></g></svg>
-                    <span class="lable"><u>sigm in</u></span>
+                    <span  class="lable"><u>sign in</u></span>
                 </button>
             </div>
             <div class="english_study">
-                <button class="goto_english_study" @click="showDialog = true"></button>
+                <button class="goto_english_study_button" @click="showDialog = true"></button>
             </div>
         </div>
 
@@ -63,31 +63,53 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { userSignIn } from "../api/user";
+import { getLearningWord } from "../api/word"
+
 const router = useRouter()
 
-// 新增代码：状态管理
+
+const handleSignIn = async ()=>{
+  console.log("start signin")
+  const res = await userSignIn();
+  console.log(res.data)
+  const message = res.data.message;
+
+  if(res.data.code == 0){
+    alert(message)
+
+  }else{
+    alert(message);
+    console.log("签到成功！")
+  }
+
+
+}
+
+// 状态管理
 const showDialog = ref(false); // 控制弹框显示
 const selectedPercentage = ref(50); // 默认滑块值
 const selectedWordCount = ref(10); // 默认单词数量
 
-// 新增代码：处理弹框提交
-const submitPreferences = () => {
-  // 将选择值通过 URL 传递到下一个页面
-  router.push({
-    path: "/EnglishStudy",
-    query: {
-      familiarity: selectedPercentage.value,
-      count: selectedWordCount.value,
-    },
-  });
-  showDialog.value = false;
+// 处理弹框提交
+const submitPreferences = async () => {
+    
+    const res = await getLearningWord({
+            new_word_weight: parseFloat((selectedPercentage.value / 100).toFixed(2)), // 转换为浮点数
+            count: selectedWordCount.value,
+        })
+
+    console.log(res.data)
+      
+    emit_words("select_words",res.data.data)
+
+    showDialog.value = false;
+    router.push({ path: "/EnglishStudy", query: { wordIds: JSON.stringify(res.data.data) } });
 };
 
-const goto_englishstudy = ()=>{
-  router.push("/EnglishStudy");
-}
 
-
+// 声明 emit 函数
+const emit_words = defineEmits(['select_words']);
 
 </script>
 
@@ -189,7 +211,7 @@ body::after{
 
 .button {
   display: flex;
-  flex-direction: column;         /* 改为列方向排列 */
+  flex-direction: column;         /* 改为列向排列 */
   justify-content: center;    /* 上对齐图标 */
   align-items: center;            /* 水平居中 */
   padding: 15px;                  /* 内边距适当调整 */
@@ -222,7 +244,7 @@ body::after{
   animation: slope 1s linear infinite;
 }
 
-.goto_english_study {
+.goto_english_study_button {
       display: inline-block; /* 确保按钮块状或内联块状 */
       width: 100%; /* 可根据需要设置 */
       height: 150px; /* 可根据需要设置 */
@@ -236,7 +258,7 @@ body::after{
       text-decoration: underline;
   }
 
-  .goto_english_study::before {
+  .goto_english_study_button::before {
       content: "S T A R T !"; /* 伪元素的内容 */
       text-decoration: underline;
       position: absolute; /* 伪元素绝对定位 */
@@ -325,11 +347,16 @@ body::after{
   0% {
   }
 
-  50% {
-    transform: rotate(10deg);
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-20deg);
   }
 
+
   100% {
+    
   }
 }
 

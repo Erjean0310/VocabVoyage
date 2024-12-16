@@ -34,14 +34,15 @@
             <el-button 
               style="background-color: aliceblue;color: black;"  
               size = "large" 
-              @click="userLogin(form)">登录</el-button>
-<!--              @click="handleLogin">登录</el-button>-->
+             @click="handleLogin">登录</el-button>
+
+             <!-- @click="userLogin(form)">登录</el-button> -->
         </el-form-item>
       </el-form>
 
       <p class="reg in-3">
         还没有账号？
-        <!-- TODO路由设置跳转注册界面！！！！！ -->
+
         <el-link type="warning"  @click="handle_click_to_signup">注册</el-link>
          <!-- <el-button>注册</el-button> -->
       </p>
@@ -62,24 +63,27 @@ const form = ref({
   password: '',
 });
 
-const handleLogin = () => {
+const handleLogin = async () => {
   // 登录逻辑
-  console.log('登录信息:', form.value);
 
-  let url = "/user/login";
-  request.post(url, form.value).then(res => {
-    console.log("Message received")
-    console.log(res)
-      if (res.code == '0') {
-        alert("登录失败，手机号或密码错误！！")
-        console.log("成功接收到信息，但是出错")
+  const res = await userLogin(form.value);
 
-      } else {
-        console.log("登录成功")
+  console.log(res)
 
-      }
-  })
+  if(res.data.code == 1){
 
+    console.log("返回信息显示登陆成功")
+    router.push("/Home");
+
+  }else{
+    alert(res.data.message)
+    
+    console.log(res.data.message)
+    form.value = {
+      phone: '',
+      password: '',
+    }
+  }
 
 };
 

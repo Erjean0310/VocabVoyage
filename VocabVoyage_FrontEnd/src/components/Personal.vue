@@ -1,14 +1,23 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { userLogout, getUserStudyData ,getUserSigninRecord} from "../api/user";
+
+import { adminCheck , adminExportData } from "../api/admin";
+
 import router from '../router';
-const avatarUrl = ref('http://vocab-voyage.oss-cn-beijing.aliyuncs.com/kk.jpg'); // 示例图片地址,替换成真实的图片路径或链接
+import Calender from "./Calender.vue"
+
+
+
+// http://vocab-voyage.oss-cn-beijing.aliyuncs.com/kk.jpg
+// const avatarUrl = ""; // 示例图片地址,替换成真实的图片路径或链接
 const data = ref({
     name: '110',
     radio: '12345@qq.com',
     checkbox: [],
     select: '',
     multipleSelect: [],
-    oldPassword: '1234',
+    oldPassword: '110',
     newPassword: '',
     confirmPassword: '',
     phone: '110'
@@ -39,36 +48,108 @@ const dialog = ref(false);
 const dialogClose = () => {
     console.log("关闭");
 };
+
+
+const handleReturnButton = async ()=>{
+    router.push("/EnglishStudy").then(() => {
+            window.location.reload(); // 刷新页面
+        });
+}
+
+const handleAdminButton = async ()=>{
+    const res = await adminCheck();
+    console.log(res);
+
+    if(res.data.code == 1){
+        router.push("/AdminPage").then(() => {
+            window.location.reload(); // 刷新页面
+        });
+    }else{
+        alert("进入管理员页面失败！请检查登录账号是否有管理员权限！")
+        console.log(res)
+    }
+
+
+}
+
+const handleLogoutButton = async ()=>{
+    const res = await userLogout();
+    console.log(res)
+
+    if(res.data.code == 1){
+        alert(res.data.message);
+        router.push("/").then(() => {
+            window.location.reload(); // 刷新页面
+        });
+        
+    }else{
+        alert("退出登录失败！")
+        console.log(res.data.message)
+    }
+
+}
+
+const studyData = ref(null); // 用于存储学习数据
+
+// 在组件加载时请求学习数据
+onMounted(async () => {
+    const res = await getUserStudyData();
+    if (res.data.code === 1) {
+        studyData.value = res.data.data; // 存储返回的学习数据
+    } else {
+        console.error("获取学习数据失败:", res.data.message);
+    }
+});
+
 </script>
 
 <template>
+
     <div class="container">
-        <div class="info-text">基本信息</div>
+        <!-- <div class="info-text">基本信息</div> -->
         <div class="avatar-container">
-            <avatar :src="avatarUrl" size="large" class="avatar-style bg-gray-circle"></avatar>
-            <div class="user-info">用户个人信息</div>
+            <img src="../../public/kk.png" class="avatar-style bg-gray-circle" />
+            <!-- <avatar :src="avatarUrl" size="large" class="avatar-style bg-gray-circle"></avatar> -->
+            <calender style="width: 300px;height: 300px;"></calender>
         </div>
+
+        <!-- <Calender style="width: 300px;height: 300px;"></Calender> -->
+
+        <div class="user-info">用户个人信息</div>
         <div class="user-detail">
             <div>账号名：{{ data.name }}</div>
             <div>手机号：(+86){{ data.phone }}</div>
-            <div>邮件地址：{{ data.radio }}</div>
-            <div>密码：{{ data.oldPassword }}
+
+            <div>密码："安全"
                 <el-button @click="dialog = true" class="reset-btn">重置</el-button>
             </div>
         </div>
-        <hr>
-        <div class="progress-info">用户进度信息</div>
+        <!-- <hr> -->
+        <!-- <div class="progress-info">用户记录信息</div>
         <div class="user-detail-extra">
-            <div>开通时间：<span>2024/04/19 14:32:37 GMT+08:00</span></div>
+            <div>开通时间：<span>2024/12/15 14:32:37 GMT+08:00</span></div>
             <div>姓名：{{ data.name }}</div>
             <div>认证信息：<span>在校学生</span></div>
             <div>联系地址：<span>中国湖北省武汉市洪山区湖北省武汉市武汉理工大学南湖校区 430070</span></div>
             <div>所背词书：<span>六级词书</span></div>
-        </div>
+        </div> -->
         <hr>
+
+        <div class="progress-info">用户学习信息</div>
+        <div class="user-study-info user-detail-extra" v-if="studyData">
+            <div>总共记忆的词汇：<span>{{ studyData.total_memorized_words }}</span></div>
+            <div>单词平均熟练度：<span>{{ studyData.average_proficiency }}</span></div>
+        </div>
+        <div v-else>加载学习信息中...</div>
+
+
+
+
         <div class="close-btn-container">
-            <div class="progress-info">关闭个人信息</div>
-            <el-button type="primary" class="close-btn">关闭</el-button>
+            <!-- <div class="progress-info">关闭个人信息</div> -->
+            <el-button type="primary" class="close-btn" @click="handleReturnButton">返回</el-button>
+            <el-button type="warning" class="close-btn" @click="handleAdminButton">进入管理员界面</el-button>
+            <el-button type="danger" class="close-btn" @click="handleLogoutButton">退出登录</el-button>
         </div>
         <el-dialog v-model="dialog" width="700" title="修改密码" draggable @close="dialogClose">
             <el-form label-width="100">
@@ -117,14 +198,15 @@ const dialogClose = () => {
 .avatar-style {
     background-color: gray;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
 }
 
 .user-info {
     font-size: 1.5rem;
     color: #000;
-    margin-left: 20px;
+    margin-top: 20px;
+    /* margin-left: 20px; */
 }
 
 .user-detail,

@@ -23,6 +23,7 @@ import { Search } from '@element-plus/icons-vue';
 
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
+import { wordFuzzySearch } from '../api/word';
 
 const state = ref('');
 
@@ -35,7 +36,9 @@ const querySearchAsync = async (queryString, cb) => {
 
   // TODO改成实际url
   try {
-    const response = await axios.get(`http://ahv5jw.natappfree.cc/word/search?query=${queryString}`);
+
+    const response = await wordFuzzySearch(queryString)
+    // const response = await axios.get(`http://ahv5jw.natappfree.cc/word/search?query=${queryString}`);
     const { data } = response.data;
     const suggestions = data.map((item) => ({ value: item.spell }));
 

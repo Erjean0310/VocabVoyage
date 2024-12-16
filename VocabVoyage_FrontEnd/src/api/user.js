@@ -25,7 +25,7 @@ export const userLogin = async (params) => {
 // 登出
 export const userLogout = async () => {
     const res = await myAxios.request({
-        url: "/user/login",
+        url: "/user/logout",
         method: "POST"
     });
     return res;
@@ -46,7 +46,7 @@ export const changePassword = async (params) => {
 export const userSignIn = async () => {
     const res = await myAxios.request({
         url: "/user/sign/in",
-        method: "GET",
+        method: "PUT",
     })
     return res;
 }
@@ -69,3 +69,29 @@ export const getUserInfo = async () => {
     })
     return res;
 }
+
+
+
+// 获取个人学习数据
+export const getUserStudyData = async () => {
+    const res = await myAxios.request({
+        url: "/user/user/study/stats",
+        method: "GET",
+    })
+    return res;
+}
+
+// 获取个人签到记录
+export const getUserSigninRecord = async params => {
+    const res = await myAxios.request({
+        url: "/user/sign/in/record?year_month=" + params,
+        method: "GET",
+    })
+    return res;
+}
+
+
+
+
+
+

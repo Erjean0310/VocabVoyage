@@ -49,7 +49,7 @@
                       style="font-size: 24px; border-color: transparent; background-color: inherit;"
                     />
                   </div>
-                  <p class="small">test meaning here</p>
+                  <!-- <p class="small">test meaning here</p> -->
                   <!-- <p class="small">{{ word.meaning }}</p> -->
                   <!-- <p class="small">{{ word.description }}</p> -->
                   <div class="go-corner" href="#">
@@ -147,18 +147,18 @@
 
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
 import { VideoPlay } from '@element-plus/icons-vue';
 import { marked } from 'marked';
-import SearchContainer from './SearchContainer.vue';
-import request from "../request.js";
+import { getWordById, getWordBySpell, memorizeWord } from "../api/word.js";
 import router from '../router';
-import { memorizeWord, getWordById, getWordBySpell, getLearningWord } from "../api/word.js"
+import SearchContainer from './SearchContainer.vue';
 // import { modelChat } from '../api/model.js'
 
 const drawer = ref(false)
 
-const activeTab = ref('Describe'); // 默认选中 Describe 标签
+const activeTab = ref('Chat'); // 默认选中 Describe 标签
 
 
 // TODO循环页面
@@ -176,6 +176,7 @@ const handle_sound = (spell) => {
 const messages = reactive([])
 const newMessage = ref('')
 
+// messages.push({ role: 'system', content: "我是你的私人英语老师，我不仅会给你解释这个单词的意思，我还会详细解释这个单词背后的一切！" })
 const sendMessage = async () => {
   //TODO 没有进行集成到model.js，此处写死
   // await modelChat(newMessage.value, messages)
@@ -228,35 +229,37 @@ const sendMessage = async () => {
 
 
 
-const handleWordSelect = (word) => {
+const handleWordSelect = async (word) => {
   // 处理从搜索框组件选中的单词
 
   console.log('Selected word:', word)
 
 
-  let url = "/word" + "?word_spell=" + word;
-  console.log("这里发送的查找单词url是：",url)
+  const res = await getWordBySpell(word)
+  console.log(res.data)
 
-  request.get(url).then(res => {
-    if (res.code == '0') {
+  if (res.code == '0') {
         console.log("未找到对应单词！");
         alert("未找到对应单词！")
 
     } else {
-        console.log("成功找到单词：", res.data);
+        console.log("成功找到单词：", res.data.data);
 
-        handleCardClick(res.data)
+        handleCardClick(res.data.data)
         // selectedWordInfo.value = res.data; // 设置选中单词的信息
 
+        activeTab.value = "Describe"
         console.log(selectedWordInfo)
     }
-  })
 
 }
 
+// 获取路由参数
+const route = useRoute();
+// const wordIds = JSON.parse(route.query.wordIds || '[35432, 37434 , 42413, 41435, 40436, 39437, 37438, 41439, 35740, 36041]'); // 解析传递的 wordIds
 
-// 假设您传入的单词 ID 列表
-const wordIds = [35432, 35433, 35434, 35435, 35436, 35437, 35438, 35439, 35440, 35441]; // 示例 ID 列表
+const wordIds = [35432, 37434 , 42413, 41435, 40436, 39437, 37438, 41439, 35740, 36041];
+
 const words = reactive([]); // 用于存储单词详细信息
 const selectedWordInfo = reactive({
   value: {
@@ -270,17 +273,17 @@ const selectedWordInfo = reactive({
 }); // 新增响应式变量，用于存储选中单词的信息
 
 
-console.log(selectedWordInfo)
-
 
 onMounted(async () => {
   for (const id of wordIds) {
-    const response = await fetch(`http://127.0.0.1:8000/word/${id}`);
-    const result = await response.json();
-    if (result.code === 1) {
-      result.data["id"] = id;
+    const res = await getWordById(id)
 
-      words.push(result.data); // 将单词信息添加到数组中
+    if(res.data.code == 1){
+      res.data.data["id"] = id;
+
+      words.push(res.data.data); // 将单词信息添加到数组中
+    }else{
+      console.log("获取单词失败")
     }
 
   }
@@ -290,15 +293,17 @@ onMounted(async () => {
 
 // 处理卡片点击事件
 const handleCardClick = (word) => {
-  console.log("有单词被选中了")
+  console.log("in handleclick:")
 
   selectedWordInfo.value = word; // 设置选中单词的信息
 
-  console.log(selectedWordInfo.value)
+  console.log("selectedWordInfo:",selectedWordInfo.value)
   selectedWordInfo.value.description = marked(selectedWordInfo.value.description)
+
+  activeTab.value = "Describe"
+
   // selectedDescription.value = marked(word.description); // 删除此行
 };
-
 
 
 const sendMemoryResult = async (memRes) => {
@@ -309,26 +314,9 @@ const sendMemoryResult = async (memRes) => {
       mem_res: memRes
     })
     console.log(memorise_rank.value)
-    memorizeWord(memorise_rank.value)
+    const res = memorizeWord(memorise_rank.value)
+    console.log("memorize res：",res)
 
-    // const response = await fetch('http://ahv5jw.natappfree.cc/word/memorize', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   credentials: 'include',
-    //   body: JSON.stringify({
-    //     word_id: selectedWordInfo.value.id,
-    //     mem_res: memRes
-    //   })
-    // });
-
-    // console.log(response)
-    // if (response.code == '1') {
-    //   console.log('Memory result sent successfully');
-    // } else {
-    //   console.error('Error sending memory result:', response.message);
-    // }
   } else {
     console.error('No selected word ID available');
   }
@@ -336,7 +324,9 @@ const sendMemoryResult = async (memRes) => {
 
 
 const handleProfileClick = ()=>{
-  router.push("/Personal")
+  router.push("/Personal").then(() => {
+      window.location.reload(); // 刷新页面
+  });
 }
 
 
@@ -365,9 +355,12 @@ const handleProfileClick = ()=>{
   justify-content: center;
   align-items: center;
 /* TODO演示颜色，后续可删除或替换背景 */
-  background-color: rgb(113, 17, 17);
+  /* background-color: rgb(113, 17, 17); */
+    background-color: rgba(113, 17, 17,0.3);
   /* 确保不出现滚动条 */
   overflow: hidden; 
+
+  background-image: url("../../public/back2.png");
 }
 .container {
   display: flex;
@@ -390,7 +383,8 @@ const handleProfileClick = ()=>{
     justify-content: center;
     align-items: center;
     /* TODO演示颜色，后续可删除或替换背景 */
-    background-color: rgb(17, 105, 163);
+    /* background-color: rgb(17, 105, 163); */
+      background-color: rgba(28, 212, 68,0.3);
     height: 64px;
 }
 
@@ -410,7 +404,9 @@ const handleProfileClick = ()=>{
   /* overflow-y: auto; 使左边部分可滚动 */
   padding:16px 16px 16px 0px;
   /* TODO演示颜色，后续可删除或替换背景 */
-  background-color: rgb(28, 212, 68);
+  /* background-color: rgb(28, 212, 68); */
+    background-color: rgba(255, 255, 255, 0.3);
+
 }
 
 
@@ -444,7 +440,8 @@ const handleProfileClick = ()=>{
   flex: 0 0 80%; 
   padding:16px 0px 16px 16px;
   /* TODO演示颜色，后续可删除或替换背景 */
-  background-color: blue;
+  /* background-color: blue; */
+  background-color: rgba(31, 22, 207, 0.3);
   /* height: 80%; */
   /* max-height: 80%; */
 }
@@ -454,8 +451,9 @@ const handleProfileClick = ()=>{
     /* flex: 0 0 20%; */
   flex: 1; 
   padding:16px 0px 16px 16px;
-  /* TODO演示颜色，后续可删除或替���背景 */
-  background-color: rgb(0, 187, 255);
+  /* TODO演示颜色，后续可删除或替换背景 */
+  /* background-color: rgb(0, 187, 255); */
+  background-color: rgba(0, 187, 255,0.3);
   /* height: 20%; */
 }
 
@@ -474,7 +472,8 @@ const handleProfileClick = ()=>{
   /* font-family: 'Arial', sans-serif; */
   /* font-size: 18px; */
   color: #333;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
+  background-color: rgba(195, 62, 62, 0.3);
 }
 
 
