@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy import func
@@ -54,5 +56,11 @@ async def add_mistake(db: AsyncSession, reporter_id: int, word_id: int, descript
     )
     db.add(mistake)
     await db.commit()
-    # await db.refresh(mistake)
-    # return mistake
+
+
+async def get_word_not_in_list(need: int, word_ids: List[int], db: AsyncSession):
+    result = await db.execute(
+        select(Word.id).filter(~Word.id.in_(word_ids)).limit(need)
+    )
+    word_ids = result.scalars().all()
+    return word_ids

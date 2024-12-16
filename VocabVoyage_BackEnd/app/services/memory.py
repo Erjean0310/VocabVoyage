@@ -5,6 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.crud.memory import list_words_by_proficiency, get_proficiency_of_word, update_proficiency
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import text
+from app.crud.word import get_word_not_in_list
 
 
 """
@@ -58,6 +59,12 @@ async def get_words(db: AsyncSession, user_id: int, new_word_weight, count: int)
     new_word_count = count - len(words)
     new_word = await list_words_by_proficiency(db, user_id, new_word_count, 0, 30)
     words.extend(new_word)
+
+    need = count - len(words)
+    # 若单词依然不够
+    if need > 0:
+        supplementary_word = await get_word_not_in_list(need, words, db)
+        words.extend(supplementary_word)
 
     random.shuffle(words)
     return words

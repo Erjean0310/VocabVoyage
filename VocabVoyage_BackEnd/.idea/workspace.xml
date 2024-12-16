@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="单词预处理部分">
-      <change afterPath="$PROJECT_DIR$/app/crud/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c/storage_v2/_src_/schema/vocab_voyage.czi09g.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae5219a-2cfe-405b-9a19-ec6709198a4c/storage_v2/_src_/schema/vocab_voyage.czi09g.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="7d9f6af8-7011-4511-9dc8-cf8af9a56254" name="Changes" comment="添加获取签到记录，查询学习数据功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/crud/mistake.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/mistake.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/crud/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/user_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/endpoints/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/endpoints/word.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/word.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/memory.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/memory.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +154,7 @@
       <workItem from="1734190133649" duration="5678000" />
       <workItem from="1734232453713" duration="17019000" />
       <workItem from="1734286958423" duration="82000" />
-      <workItem from="1734315408623" duration="13465000" />
+      <workItem from="1734315408623" duration="15892000" />
     </task>
     <task id="LOCAL-00001" summary="添加上报错误功能">
       <option name="closed" value="true" />
@@ -233,7 +228,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734280676264</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="添加获取签到记录，查询学习数据功能">
+      <option name="closed" value="true" />
+      <created>1734330543092</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734330543092</updated>
+    </task>
+    <task id="LOCAL-00011" summary="添加获取签到记录，查询学习数据功能">
+      <option name="closed" value="true" />
+      <created>1734330574819</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734330574819</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,10 +269,11 @@
     <MESSAGE value="新增获取个人信息接口" />
     <MESSAGE value="新增检查用户登录状态功能" />
     <MESSAGE value="单词预处理部分" />
-    <option name="LAST_COMMIT_MESSAGE" value="单词预处理部分" />
+    <MESSAGE value="添加获取签到记录，查询学习数据功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加获取签到记录，查询学习数据功能" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$VocabVoyage_BackEnd.coverage" NAME="VocabVoyage_BackEnd Coverage Results" MODIFIED="1734330112446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$VocabVoyage_BackEnd.coverage" NAME="VocabVoyage_BackEnd Coverage Results" MODIFIED="1734332101951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/VocabVoyage_BackEnd$test.coverage" NAME="test Coverage Results" MODIFIED="1734328476929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
