@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@123.249.75.60">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.51">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.52">
     <root id="1">
       <DefaultCasing>exact</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1372,13 +1372,11 @@ sign_in_year_month</ColNames>
       <Definer>root@%</Definer>
       <Events>I</Events>
       <SourceTextLength>73</SourceTextLength>
-      <Turn>after-row</Turn>
     </trigger>
     <trigger id="360" parent="305" name="sign_id_addcoin">
       <Definer>root@%</Definer>
       <Events>U</Events>
       <SourceTextLength>123</SourceTextLength>
-      <Turn>after-row</Turn>
     </trigger>
     <column id="361" parent="306" name="id">
       <AutoIncrement>43578</AutoIncrement>

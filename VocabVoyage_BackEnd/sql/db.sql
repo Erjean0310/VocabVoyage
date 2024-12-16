@@ -84,3 +84,74 @@ SELECT u.id AS user_id, COUNT(m.id) AS total_memorized_words, AVG(m.proficiency)
 FROM user u
          JOIN memory m ON u.id = m.user_id
 GROUP BY u.id;
+
+
+
+-- 视图
+SELECT
+    `u`.`id` AS `user_id`,
+    count( `m`.`id` ) AS `total_memorized_words`,
+    avg( `m`.`proficiency` ) AS `average_proficiency`
+FROM
+    ( `user` `u` JOIN `memory` `m` ON ( ( `u`.`id` = `m`.`user_id` ) ) )
+GROUP BY
+    `u`.`id`;
+
+
+-- 存储过程
+CREATE DEFINER=`root`@`%` PROCEDURE `update_proficiency`(IN p_word_id INT, IN p_user_id INT, IN mem_res INT)
+BEGIN
+    DECLARE current_proficiency INT DEFAULT 0;
+    -- 尝试获取当前熟练度，如果不存在则设置为默认值
+    SELECT proficiency INTO current_proficiency
+    FROM memory
+    WHERE user_id = p_user_id AND word_id = p_word_id;
+    -- 根据记忆结果更新熟练度
+    CASE mem_res
+        WHEN 1 THEN
+            SET current_proficiency = FLOOR(current_proficiency * 0.7 + 100 * 0.3);
+        WHEN 2 THEN
+            SET current_proficiency = FLOOR(current_proficiency * 0.9);
+        WHEN 3 THEN
+            SET current_proficiency = FLOOR(current_proficiency * 0.3);
+        ELSE
+            -- 如果 mem_res 不是 1、2 或 3，可以设置为默认值或抛出错误
+            SET current_proficiency = 0; -- 或者可以选择抛出错误
+        END CASE;
+    -- 如果用户和单词都存在，更新熟练度和最后记忆时间；否则插入新记录，熟练度设为 6
+    IF EXISTS (SELECT 1 FROM memory WHERE user_id = p_user_id AND word_id = p_word_id) THEN
+        UPDATE memory
+        SET proficiency = current_proficiency, last_memory_time = CURDATE()
+        WHERE user_id = p_user_id AND word_id = p_word_id;
+    ELSE
+        INSERT INTO memory (user_id, word_id, last_memory_time, proficiency)
+        VALUES (p_user_id, p_word_id, CURDATE(), current_proficiency);
+    END IF;
+END;
+
+-- 触发器1
+create definer = root@`%` trigger sign_id_addcoin
+    after update
+                     on user_sign_in
+                     for each row
+BEGIN
+    IF NEW.record <>OLD.record
+THEN
+UPDATE user
+SET coin = coin + 1
+WHERE user.id = NEW.user_id;
+END IF;
+END;
+
+
+-- 触发器2
+create definer = root@`%` trigger sign_id_addcoin2
+    after insert
+    on user_sign_in
+    for each row
+BEGIN
+    Update user
+    set coin = coin + 1
+    where user.id = New.user_id;
+END;
+
