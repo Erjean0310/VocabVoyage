@@ -7,10 +7,10 @@ from app.common.result import Result
 
 # 用户签到
 async def user_sign_in(db: AsyncSession, user_id: int):
-    date_string = "2024-01-16"
-    cur_date = datetime.strptime(date_string, "%Y-%m-%d")
+    # date_string = "2024-01-16"
+    # cur_date = datetime.strptime(date_string, "%Y-%m-%d")
 
-    # cur_date = datetime.now()  TODO 修复
+    cur_date = datetime.now()
 
     day = cur_date.day
     year_month_str = cur_date.strftime("%Y-%m")
