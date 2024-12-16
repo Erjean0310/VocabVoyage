@@ -7,10 +7,11 @@ from app.crud.user import (create_user, get_user_by_phone, verify_password,
 from app.schemas.user import UserCreate, UserLogin, UserChangePassword
 from app.services.auth import create_token, refresh_token, get_user_id_and_token
 from app.core.config import settings
-from app.services.user_service import user_sign_in, check_sign_in_status
+from app.services.user_service import user_sign_in, check_sign_in_status, handle_sign_in_record
 from app.core.constans import Constants
 from app.common.result import Result
 from app.services.file_upload import upload_file_to_oss
+from app.crud.user import get_user_word_stats_by_id
 
 
 router = APIRouter()
@@ -64,7 +65,6 @@ async def logout_user(response: Response):
     # 清除 Cookie 中的 session_id
     response.delete_cookie(settings.COOKIE_NAME)
     return Result.success(Constants.LOGOUT_SUCCESSFUL)
-
 
 
 @router.post("/change/password", summary="修改密码")
@@ -134,3 +134,23 @@ async def upload_file(request: Request, file: UploadFile = File(...), db: AsyncS
 
     return Result.success("头像更新成功", data={"avatar_url": file_url})
 
+
+@router.get("/sign/in/record", summary="获取用户签到记录")
+async def get_sign_in_record(
+        year_month: str,
+        request: Request,
+        response: Response,
+        db: AsyncSession = Depends(get_db)
+):
+    user_id, token = get_user_id_and_token(request)  # 获取用户ID
+    res = await handle_sign_in_record(db, user_id, year_month)
+    refresh_token(token, response)
+    return Result.success(data=res)
+
+
+@router.get("/user/study/stats", summary="获取用户学习数据")
+async def read_user_word_stats(request: Request, response: Response, db: AsyncSession = Depends(get_db)):
+    user_id, token = get_user_id_and_token(request)  
+    stats = await get_user_word_stats_by_id(db, user_id)
+    refresh_token(token, response)
+    return Result.success(data=stats)

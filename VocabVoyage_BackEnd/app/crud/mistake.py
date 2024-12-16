@@ -14,10 +14,7 @@ async def get_mistakes_with_details(db: AsyncSession, page: int = 1, page_size: 
     # 为报告人和解决人创建别名
     user_reporter = aliased(User, name='reporter')
     user_solver = aliased(User, name='solver')
-
-    # 计算跳过的记录数
     skip = (page - 1) * page_size
-
     # 构建查询
     query = (select(
         Mistake,

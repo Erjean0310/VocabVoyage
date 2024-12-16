@@ -3,6 +3,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from app.models.user import User
 from sqlalchemy import update
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from app.models.user_word_stats import UserWordStats
 
 
 async def create_user(db: AsyncSession, nick_name: str, phone: str, password: str):
@@ -60,3 +63,18 @@ async def update_user_fields(db: AsyncSession, user_id: int, **kwargs):
     )
     await db.commit()
 
+
+async def get_user_word_stats_by_id(db: AsyncSession, user_id: int):
+    # 查询视图数据
+    result = await db.execute(select(UserWordStats).filter(UserWordStats.user_id == user_id))
+    stats = result.scalar_one_or_none()  # 获取查询结果
+
+    # 如果没有找到数据，返回零
+    if stats is None:
+        return {
+            "user_id": user_id,
+            "total_memorized_words": 0,
+            "average_proficiency": 0.0
+        }
+    
+    return stats

@@ -7,7 +7,11 @@ from app.common.result import Result
 
 # 用户签到
 async def user_sign_in(db: AsyncSession, user_id: int):
-    cur_date = datetime.now()
+    date_string = "2024-01-16"
+    cur_date = datetime.strptime(date_string, "%Y-%m-%d")
+
+    # cur_date = datetime.now()  TODO 修复
+
     day = cur_date.day
     year_month_str = cur_date.strftime("%Y-%m")
 
@@ -45,6 +49,29 @@ async def check_sign_in_status(db: AsyncSession, user_id: int):
         if is_signed_in:
             return True
     return False
+
+
+# 获取签到记录
+async def handle_sign_in_record(db: AsyncSession, user_id: int, year_month_str: str):
+    record = await get_sign_in_record(db, user_id, year_month_str)
+    if record is None:
+        return []
+
+    # 如果月份是单个数字，去掉前导零
+    year, month = year_month_str.split('-')
+    if len(month) == 2 and month[0] == '0':
+        month = month[1]
+    year_month_str = f"{year}-{month}-"
+
+    res = []
+    for i in range(1, 8 * int.bit_length(record)):  # 乘以8是因为1字节有8位
+        # 检查当前位是否为1
+        if (record >> i) & 1:
+            res.append(year_month_str + str(i))
+
+    return res
+
+
 
 
 
